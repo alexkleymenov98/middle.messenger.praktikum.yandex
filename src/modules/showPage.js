@@ -1,4 +1,10 @@
-const pagesHash = ['changePassword','changeProfile','login', 'registration','profile'];
+const pagesHash = {
+    changePassword:'#changePassword',
+    changeProfile:'#changeProfile',
+    login:'#login',
+    registration:'#registration',
+    profile:'#profile',
+};
 
 function showElementByClassName(selector){
     const element = document.querySelector(selector);
@@ -8,13 +14,17 @@ function showElementByClassName(selector){
 }
 
 function checkActivePageByPageName(pageName) {
-    const hash = `#${pageName}`;
-    const selector = `.page-${pageName}`
+    const hash = pagesHash[pageName];
+    const selector = `.page-${pageName}`;
+    const locationHash = window.location.hash.indexOf('#') === 0
+        ? window.location.hash.slice(1)
+        :window.location.hash;
+
     if(window.location.hash === ''){
         showElementByClassName('.page-message-list');
         return
     }
-    if (!(pagesHash.some((key) => `#${key}` === window.location.hash))) {
+    if (!(pagesHash[locationHash])) {
         showElementByClassName('.page-404');
         return;
     }
@@ -32,7 +42,7 @@ function clearActivePage(){
 
 function showPage(){
     clearActivePage();
-    pagesHash.forEach((hash) => checkActivePageByPageName(hash))
+    Object.keys(pagesHash).forEach((hash) => checkActivePageByPageName(hash))
 }
 
 export default showPage;

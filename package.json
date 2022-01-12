@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "parcel src/index.pug --port=3000 --open",
-    "start": "parcel src/index.pug && node server.js",
+    "start": "parcel build src/index.pug && node server.js",
     "build": "parcel build src/index.pug"
   },
   "repository": {

@@ -1,0 +1,12 @@
+extends ../../layouts/Form/form
+include ../../components/InputField/inputField
+include ../../components/InputField/inputFieldSubmit
+
+block append title
+    span Вход
+block append fields
+    +inputField('login','Логин','login','text','','')
+    +inputField('password','Пароль','password','password','','')
+block append buttons
+    +inputFieldSubmit('Войти')
+    a(href="/#registration") Создать аккаунт

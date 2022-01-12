@@ -1,0 +1,101 @@
+.message-list {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    max-width: 31rem;
+    flex: 1;
+    background: #FBFBFB;
+    border-right: 1px solid $profileLine;
+    height: 100vh;
+    &__header {
+      padding: 1rem;
+      text-align: right;
+      a {
+        color:#999;
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        display: inline-block;
+      }
+      .search {
+        width: 100%;
+        text-align: center;
+        border:none;
+        font-size: 1.2rem;
+        padding: 1rem;
+        background: #EFEFEF;
+        border-radius: 5px;
+        margin-top: 2rem;
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+    &__content {
+      overflow-y: auto;
+    }
+  }
+  .message-content {
+    flex: auto;
+    .empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.user {
+  &-item {
+    border-top: 1px solid $profileLine;
+    position: relative;
+    padding: 1rem 5rem 1rem 6.7rem;
+    min-height: 5.1rem;
+    cursor: pointer;
+    &:hover {
+      background: #E4EDFD;
+    }
+    p {
+      color: #999999;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      margin: 4px 0 0 0;
+    }
+    &__title {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 900;
+    }
+    &__avatar {
+      position: absolute;
+      left: 1rem;
+      top:1rem;
+      .avatar {
+        height: 4.7rem;
+        width: 4.7rem;
+      }
+    }
+    &__time {
+      position: absolute;
+      right: 1rem;
+      top:1rem;
+    }
+    &__new-message {
+      position: absolute;
+      right: 1rem;
+      bottom:1rem;
+      background: $buttonBg;
+      color:#fff;
+      min-width: 20px;
+      min-height: 20px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

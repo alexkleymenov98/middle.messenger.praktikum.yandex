@@ -1,9 +1,10 @@
 html(lang="en")
     head
         block head
-            script(type="module", src="index.js")
+            script(type="module", src="./index.ts")
     body
         .wrapper
+            #app
             .page.page-message-list
                 include ../../pages/Chat/index
             .page.page-login

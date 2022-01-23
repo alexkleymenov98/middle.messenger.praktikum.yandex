@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss"
+  ],
+  "rules": {
+    "rule-empty-line-before": "never",
+    "scss/dollar-variable-pattern": null
+  }
+}

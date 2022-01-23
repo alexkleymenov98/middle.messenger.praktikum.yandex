@@ -1,14 +1,13 @@
 .page {
   display: none;
   &-error {
-    color:#1E1E1E;
+    color: #1e1e1e;
     text-align: center;
     &__title {
       font-size: 4rem;
       font-weight: 500;
       text-align: center;
-      margin: 2rem 0 0 0;
-
+      margin: 2rem 0 0;
     }
     &__desc {
       font-size: 2rem;

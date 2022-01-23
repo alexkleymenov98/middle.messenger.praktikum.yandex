@@ -7,14 +7,14 @@
     flex-direction: column;
     max-width: 31rem;
     flex: 1;
-    background: #FBFBFB;
+    background: #fbfbfb;
     border-right: 1px solid $profileLine;
     height: 100vh;
     &__header {
       padding: 1rem;
       text-align: right;
       a {
-        color:#999;
+        color: #999;
         font-size: 1.2rem;
         line-height: 1.2rem;
         display: inline-block;
@@ -22,13 +22,13 @@
       .search {
         width: 100%;
         text-align: center;
-        border:none;
+        border: none;
         font-size: 1.2rem;
         padding: 1rem;
-        background: #EFEFEF;
+        background: #efefef;
         border-radius: 5px;
         margin-top: 2rem;
-        &:focus{
+        &:focus {
           outline: none;
         }
       }
@@ -48,7 +48,6 @@
     }
   }
 }
-
 .user {
   &-item {
     border-top: 1px solid $profileLine;
@@ -57,13 +56,13 @@
     min-height: 5.1rem;
     cursor: pointer;
     &:hover {
-      background: #E4EDFD;
+      background: #e4edfd;
     }
     p {
-      color: #999999;
+      color: #999;
       font-size: 1.2rem;
       line-height: 1.5rem;
-      margin: 4px 0 0 0;
+      margin: 4px 0 0;
     }
     &__title {
       margin: 0;
@@ -73,7 +72,7 @@
     &__avatar {
       position: absolute;
       left: 1rem;
-      top:1rem;
+      top: 1rem;
       .avatar {
         height: 4.7rem;
         width: 4.7rem;
@@ -82,14 +81,14 @@
     &__time {
       position: absolute;
       right: 1rem;
-      top:1rem;
+      top: 1rem;
     }
     &__new-message {
       position: absolute;
       right: 1rem;
-      bottom:1rem;
+      bottom: 1rem;
       background: $buttonBg;
-      color:#fff;
+      color: #fff;
       min-width: 20px;
       min-height: 20px;
       border-radius: 20px;

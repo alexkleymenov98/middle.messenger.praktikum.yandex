@@ -1,6 +1,6 @@
 .input {
   &-label {
-    color:$labelColor;
+    color: $labelColor;
     position: relative;
     .error-text {
       position: absolute;
@@ -21,13 +21,13 @@
       border-bottom: 1px solid $link;
     }
     &-error {
-      color:$errorColor;
+      color: $errorColor;
     }
     &-submit {
       background: $buttonBg;
       border: none;
-      border-radius: .8rem;
-      color:$buttonColor;
+      border-radius: 0.8rem;
+      color: $buttonColor;
       font-size: 1.3rem;
       padding: 1.2rem;
       cursor: pointer;

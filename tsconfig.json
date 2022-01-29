@@ -10,6 +10,5 @@
     "module": "commonjs",
     "strictNullChecks": true,
     "sourceMap": true,
-  }
+  },
 }
-

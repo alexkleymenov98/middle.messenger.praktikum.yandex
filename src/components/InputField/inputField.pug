@@ -1,0 +1,4 @@
+mixin inputField(inputName, labelName,id, typeInput, errorText,valueInput)
+    label.input-label(for=id)=labelName
+        input(id=id,class=errorText ?"input-field input-field-error":"input-field",type=typeInput, name=inputName,value=valueInput)
+        span.error-text=errorText

@@ -1,0 +1,13 @@
+extends ../../layouts/Form/form
+include ../../components/InputField/inputField
+include ../../components/InputField/inputFieldSubmit
+
+block append title
+    span Изменить пароль
+block append fields
+    +inputField('oldPassword','Старый пароль','oldPassword','password','','')
+    +inputField('newPassword','Новый пароль','newPassword','password','','')
+    +inputField('confirm','Повторите новый пароль','confirm','password','','')
+block append buttons
+    +inputFieldSubmit('Сохранить')
+    a(href="/#profile") Вернуться в профиль

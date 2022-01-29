@@ -1,0 +1,45 @@
+@import "variables";
+html {
+  font-size: 10px;
+}
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 1.3rem;
+  color: #1E1E1E;
+  font-family: 'Inter', sans-serif;
+}
+a {
+  text-decoration: none;
+  color:$link;
+  &:visited{
+    color: $link;
+  }
+}
+
+.error {
+  &-text{
+    color: $errorColor;
+  }
+}
+.avatar {
+  background: $avatarBg;
+  width: 13rem;
+  height: 13rem;
+  border-radius: 100%;
+  &-default {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@import "../layouts/PageError/styles";
+@import "../layouts/Content/styles";
+@import "../layouts/Form/styles";
+@import "../components/InputField/styles";
+@import "../pages/Profile/styles";
+@import "../pages/Chat/styles";
+.show {
+  display: block;
+}

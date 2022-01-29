@@ -1,0 +1,50 @@
+.profile {
+  min-width: 51rem;
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+  }
+  &-links {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    .profile-link {
+      display: flex;
+      color: $link;
+      font-size: 1.5rem;
+      line-height: 3.5rem;
+      border-bottom: 1px solid $profileLine;
+      &-exit {
+        color: $errorColor;
+        border-bottom: none;
+      }
+    }
+  }
+  &-info {
+    list-style: none;
+    padding: 0;
+    margin: 5rem auto;
+    &__row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.3rem;
+      line-height: 3.3rem;
+      font-weight: 600;
+      border-bottom: 1px solid $profileLine;
+      .value {
+        color:#999999;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  &__avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+}

@@ -1,3 +1,6 @@
+### **Ссылки на PR**
+
+- «[Sprint 1](https://github.com/alexkleymenov98/middle.messenger.praktikum.yandex/pull/1)»,
 ## Приложение чат
 Приложения для обменя сообщениями между пользователями
 
@@ -13,5 +16,4 @@
 
 #Показ стабильной версии 
 
-- «[отображение сайта на Netlify](https://nostalgic-euler-35567b.netlify.app/)»,
-
+- «[отображение сайта на Netlify](https://nostalgic-euler-35567b.netlify.app/)»

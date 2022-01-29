@@ -1,4 +1,4 @@
-import showPage from './modules/showPage';
+import showPage from './modules/ShowPage';
 
 window.addEventListener('load', function() {
   showPage();

@@ -9,7 +9,7 @@
   },
   "rules": {
     "indent": "warn",
-    "max-len": [2, 100],
+    "max-len": [2, 134],
     "@typescript-eslint/no-unused-vars": 2,
     "require-jsdoc": "off",
     "operator-linebreak": "off",

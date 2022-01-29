@@ -1,8 +1,8 @@
 @import "variables";
-@import "../layouts/PageError/styles";
+@import "../pages/Errors/styles";
 @import "../layouts/Content/styles";
-@import "../layouts/Form/styles";
-@import "../components/InputField/styles";
+@import "../components/Form/styles";
+@import "../components/Input/styles";
 @import "../pages/Profile/styles";
 @import "../pages/Chat/styles";
 html {
@@ -32,6 +32,7 @@ a {
   background: $avatarBg;
   width: 13rem;
   height: 13rem;
+  cursor: pointer;
   border-radius: 100%;
   &-default {
     display: flex;

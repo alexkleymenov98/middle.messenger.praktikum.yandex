@@ -1,4 +1,4 @@
-export type componentCircleKey = 'INIT' |'FLOW_CDM'|'FLOW_RENDER' | 'FLOW_UPDATE';
+export type componentCircleKey = 'INIT' |'FLOW_CDM'|'FLOW_RENDER' | 'FLOW_CDU';
 export type componentCircleValue =
   'init'
   |'flow:component-did-mount'

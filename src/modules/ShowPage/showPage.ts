@@ -1,54 +1,48 @@
 import {
   TFCheckActivePageByPageName,
-  TFClearActivePage,
-  TFShowElementByClassName,
   TFShowPage,
 } from './types';
+import Errors from '../../pages/Errors';
+import Chat from '../../pages/Chat';
+import Login from '../../pages/Login';
+import {render} from '../../utils/renderDom';
+import {pagesHash} from '../../shared/const';
+import Registration from '../../pages/Registration';
+import ChangePassword from '../../pages/ChangePassword';
+import ChangeProfile from '../../pages/ChangeProfile';
+import Profile from '../../pages/Profile';
+import Block from '../Block';
 
-const pagesHash = {
-  changePassword: '#changePassword',
-  changeProfile: '#changeProfile',
-  login: '#login',
-  registration: '#registration',
-  profile: '#profile',
-};
-
-const showElementByClassName:TFShowElementByClassName = (selector)=> {
-  const element = document.querySelector(selector);
-  if (element) {
-    element.classList.add('show');
-  }
+const pages:Record<pagesHash, unknown> = {
+  [pagesHash.changePassword]: new ChangePassword({}),
+  [pagesHash.changeProfile]: new ChangeProfile({}),
+  [pagesHash.login]: new Login({}),
+  [pagesHash.registration]: new Registration({}),
+  [pagesHash.profile]: new Profile({}),
 };
 
 const checkActivePageByPageName:TFCheckActivePageByPageName<keyof typeof pagesHash> = (pageName)=> {
   const hash = pagesHash[pageName];
-  const selector = `.page-${pageName}`;
   const locationHash = window.location.hash.indexOf('#') === 0
     ? window.location.hash.slice(1)
     : window.location.hash;
 
   if (window.location.hash === '') {
-    showElementByClassName('.page-message-list');
+    const chat = new Chat({});
+    render('#app', chat);
     return;
   }
   if (!(pagesHash[locationHash as keyof typeof pagesHash])) {
-    showElementByClassName('.page-404');
+    const page404 = new Errors({code: 404, text: 'Не туда попали'});
+    render('#app', page404);
     return;
   }
   if (window.location.hash === hash) {
-    showElementByClassName(selector);
-  }
-};
-
-const clearActivePage:TFClearActivePage = ()=> {
-  const pageActiveList = document.querySelectorAll('.page.show');
-  if (pageActiveList.length) {
-    pageActiveList.forEach((page) => page.classList.remove('show'));
+    render('#app', pages[hash] as Block<any>);
   }
 };
 
 const showPage:TFShowPage = ()=> {
-  clearActivePage();
   (Object.keys(pagesHash) as (keyof typeof pagesHash)[])
       .forEach((hash) => checkActivePageByPageName(hash));
 };

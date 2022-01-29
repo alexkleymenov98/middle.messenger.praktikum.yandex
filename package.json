@@ -6,7 +6,7 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "dev": "parcel src/index.pug --port=3000 --open",
+    "dev": "parcel src/index.pug",
     "start": "parcel build src/index.pug && node server.js",
     "build": "parcel build src/index.pug",
     "eslint": "eslint . --ext .ts",
@@ -24,8 +24,9 @@
   },
   "homepage": "https://github.com/alexkleymenov98/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@parcel/transformer-pug": "^2.1.1",
-    "@parcel/transformer-sass": "2.1.1",
+    "@parcel/transformer-pug": "^2.2.1",
+    "@parcel/transformer-sass": "^2.2.1",
+    "@types/pug": "^2.0.6",
     "@types/uuid": "8.3.4",
     "@typescript-eslint/eslint-plugin": "5.10.0",
     "@typescript-eslint/parser": "5.10.0",

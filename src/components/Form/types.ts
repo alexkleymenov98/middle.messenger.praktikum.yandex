@@ -8,8 +8,8 @@ export type InputsForm = Omit<TInputs, 'message'>
 
 
 export type FormProps = Partial<InputsForm> & {
-    submitName:string;
-    linkName?:string;
-    linkPath?:string;
-    events?:ComponentEvents;
+    submitName: string;
+    linkName?: string;
+    linkPath?: string;
+    events?: ComponentEvents;
 };

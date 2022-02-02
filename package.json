@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "parcel src/index.pug",
     "start": "parcel src/index.pug --port=3000",
-    "serve": "parcel build src/index.pug && node server.js",
+    "serve": "parcel build --no-minify src/index.pug && node server.js",
     "build": "parcel build  --no-minify src/index.pug",
     "eslint": "eslint . --ext .ts",
     "stylelint": "stylelint \"src/**/*.scss\"",

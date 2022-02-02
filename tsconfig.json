@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "dist",
-    "target": "es2016",
-    "declaration": false,
-    "module": "commonjs",
-    "strictNullChecks": true,
     "sourceMap": true,
-  },
+    "strictNullChecks": true,
+    "moduleResolution": "node"
+  }
 }

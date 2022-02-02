@@ -1,4 +1,4 @@
 export type MessageHeaderProps = {
-  name:string;
-  avatar:string;
+  name: string;
+  avatarSrc: string;
 }

@@ -1,13 +1,23 @@
 import Block from '../../modules/Block';
-import {FormProps} from './types';
-import {template} from './template';
-import Input from '../Input';
+import {FormProps, InputsForm} from './types';
+import template from './template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import {InputName} from '../../shared/const';
+import Input from '../Input';
 
 class Form extends Block<FormProps> {
   constructor(props:FormProps) {
     super({
+      [InputName.EMAIL]: null,
+      [InputName.LOGIN]: null,
+      [InputName.FIRST_NAME]: null,
+      [InputName.SECOND_NAME]: null,
+      [InputName.DISPLAY_NAME]: null,
+      [InputName.PHONE]: null,
+      [InputName.PASSWORD]: null,
+      [InputName.OLD_PASSWORD]: null,
+      [InputName.NEW_PASSWORD]: null,
+      [InputName.CONFIRM]: null,
       ...props,
       events: {
         submit: (event: Event) => this.onSubmit(event),
@@ -15,46 +25,41 @@ class Form extends Block<FormProps> {
     });
   }
 
-  onValid():boolean {
-    let isValidForm = true;
-    const children = this.getChildren()?.content as Input[];
-    if (Array.isArray(children)) {
-      const passwords:InputName[] = [InputName.NEW_PASSWORD, InputName.PASSWORD];
-      let compareValue = '';
-      children.forEach((item)=>{
-        if (item.props.inputName === 'confirm') {
-          item.onUpdate(item.props.inputName, item.props.inputValue as string, compareValue);
+  isValid(): boolean {
+    let compareValue = '';
+    const passwords:InputName[] = [InputName.NEW_PASSWORD, InputName.PASSWORD];
+    const children = this.getChildren() as InputsForm;
+    Object.values(children).forEach((input)=>{
+      if (input && input instanceof Input) {
+        if (input.props.inputName === 'confirm') {
+          input.onValidate(input.props.inputName, input.props.inputValue as string, compareValue);
         } else {
-          if (passwords.includes(item.props.inputName)) {
-            compareValue = item.props.inputValue as string;
+          if (passwords.includes(input.props.inputName)) {
+            compareValue = input.props.inputValue as string;
           }
-          item.onUpdate(item.props.inputName, item.props.inputValue as string);
+          input.onValidate(input.props.inputName, input.props.inputValue as string);
         }
-      });
-      children.forEach((item)=>{
-        if (!item.props.isValid) {
-          isValidForm = false;
-        }
-      });
-    }
-    return isValidForm;
+      }
+    });
+    return Object.values(children)
+        .every((input)=>input && input instanceof Input && input.props.isValid);
   }
 
-  onSubmit(event:Event):void {
+  onSubmit(event: Event): void {
     event.preventDefault();
-    if (this.onValid()) {
+    if (this.isValid()) {
       const formData = new FormData(event.target as HTMLFormElement);
       const data:Record<string, string> = {};
-      const inputs = this.getChildren()?.content;
-      if (Array.isArray(inputs)) {
-        inputs.forEach((input)=>{
+      const children = this.getChildren() as InputsForm;
+      Object.values(children).forEach((input)=>{
+        if (input) {
           const inputName = input.props.inputName as FormDataEntryValue | null;
           if (inputName && typeof inputName === 'string') {
             data[inputName] = <string>formData.get(input.props.inputName);
           }
-        });
-        console.log(data);
-      }
+        }
+      });
+      console.log(data);
     }
   }
 

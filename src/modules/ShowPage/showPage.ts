@@ -1,5 +1,4 @@
 import {
-  TFCheckActivePageByPageName,
   TFShowPage,
 } from './types';
 import Errors from '../../pages/Errors';
@@ -13,7 +12,7 @@ import ChangeProfile from '../../pages/ChangeProfile';
 import Profile from '../../pages/Profile';
 import Block from '../Block';
 
-const pages:Record<pagesHash, unknown> = {
+const pages:Record<string, Block<any>> = {
   [pagesHash.changePassword]: new ChangePassword({}),
   [pagesHash.changeProfile]: new ChangeProfile({}),
   [pagesHash.login]: new Login({}),
@@ -21,30 +20,15 @@ const pages:Record<pagesHash, unknown> = {
   [pagesHash.profile]: new Profile({}),
 };
 
-const checkActivePageByPageName:TFCheckActivePageByPageName<keyof typeof pagesHash> = (pageName)=> {
-  const hash = pagesHash[pageName];
-  const locationHash = window.location.hash.indexOf('#') === 0
-    ? window.location.hash.slice(1)
-    : window.location.hash;
-
-  if (window.location.hash === '') {
+const showPage:TFShowPage = (hash)=> {
+  if (hash === '') {
     const chat = new Chat({});
     render('#app', chat);
     return;
   }
-  if (!(pagesHash[locationHash as keyof typeof pagesHash])) {
-    const page404 = new Errors({code: 404, text: 'Не туда попали'});
-    render('#app', page404);
-    return;
-  }
-  if (window.location.hash === hash) {
-    render('#app', pages[hash] as Block<any>);
-  }
+
+  render('#app', pages[hash] ?? new Errors({code: 404, text: 'Не туда попали'}) as Block<any>);
 };
 
-const showPage:TFShowPage = ()=> {
-  (Object.keys(pagesHash) as (keyof typeof pagesHash)[])
-      .forEach((hash) => checkActivePageByPageName(hash));
-};
 
 export default showPage;

@@ -1,6 +1,0 @@
-export const template = `main.page-error
-    h2.page-error__title
-        span #{code}
-    p.page-error__desc
-        span #{text}
-    a(href="/") Назад к чатам`;

@@ -1,6 +1,6 @@
 import Block from '../../../../modules/Block';
 import {TRenderElement} from '../../../../modules/Block/types';
-import {template} from './template';
+import template from './template.pug';
 import {NavigationProps} from './types';
 
 class Navigation extends Block<NavigationProps> {

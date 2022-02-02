@@ -1,0 +1,16 @@
+form
+    .form-container-content
+        .form-container__fields
+            | {{email}}
+            | {{login}}
+            | {{first_name}}
+            | {{second_name}}
+            | {{display_name}}
+            | {{phone}}
+            | {{password}}
+            | {{oldPassword}}
+            | {{newPassword}}
+            | {{confirm}}
+        .form-container__buttons
+            input(type="submit", value="{{submitName}}", class="input-field-submit")
+            a(href="{{linkPath}}") {{linkName}}

@@ -1,8 +1,8 @@
-export const template = `.profile
+.profile
     .profile__avatar
         .avatar.avatar-default
             img(src=avatar)
-    h1.profile__title #{name}
+    h1.profile__title="{{name}}"
     ul.profile-info
         li.profile-info__row
             span.label Почта
@@ -22,4 +22,4 @@ export const template = `.profile
         li.profile-info__row
             span.label Телефон
             span.value +7 (909) 967 30 30
-    | !{navigation}`;
+    | {{navigation}}

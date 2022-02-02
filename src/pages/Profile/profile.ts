@@ -1,6 +1,6 @@
 import Block from '../../modules/Block';
 import {ProfileProps} from './types';
-import {template} from './template';
+import template from './template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 // @ts-ignore
 import defaultIcon from '../../../static/images/default-icon.png';

@@ -13,13 +13,11 @@ export const emptyValidate:TFValidate = (value)=> {
   };
 };
 
-export const lengthValidate:TFValidateLength = (value, min, max)=>{
-  const MIN_LENGTH = min;
-  const MAX_LENGTH = max;
-  if (MIN_LENGTH > value.length || MAX_LENGTH < value.length) {
+export const lengthValidate:TFValidateLength = (value, minLength, maxLength)=>{
+  if (minLength > value.length || maxLength < value.length) {
     return {
       isValid: false,
-      errorText: `Поле должно быть от ${MIN_LENGTH} до ${MAX_LENGTH} символов`,
+      errorText: `Поле должно быть от ${minLength} до ${maxLength} символов`,
     };
   }
   return {

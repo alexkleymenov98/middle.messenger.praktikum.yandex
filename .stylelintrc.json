@@ -3,6 +3,7 @@
     "stylelint-config-standard-scss"
   ],
   "rules": {
+    "color-hex-length": "long",
     "rule-empty-line-before": "never",
     "scss/dollar-variable-pattern": null
   }

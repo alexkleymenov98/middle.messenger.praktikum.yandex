@@ -6,9 +6,9 @@ export enum METHODS {
 }
 
 export type Options = {
-  headers?:Record<string, string>
+  headers?: Record<string, string>;
   method: METHODS;
-  timeout?:number;
+  timeout?: number;
   data?: any;
 };
 

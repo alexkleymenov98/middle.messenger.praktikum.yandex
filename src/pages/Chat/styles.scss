@@ -1,15 +1,15 @@
 .user {
   &-item {
-    border-top: 1px solid $profileLine;
+    border-top: 1px solid $line;
     position: relative;
     padding: 1rem 5rem 1rem 6.7rem;
     min-height: 5.1rem;
     cursor: pointer;
     &:hover {
-      background: #e4edfd;
+      background: $myMessageBg;
     }
     p {
-      color: #999;
+      color: $labelColor;
       font-size: 1.2rem;
       line-height: 1.5rem;
       margin: 4px 0 0;
@@ -38,7 +38,7 @@
       right: 1rem;
       bottom: 1rem;
       background: $buttonBg;
-      color: #fff;
+      color: $myMessageColor;
       min-width: 20px;
       min-height: 20px;
       border-radius: 20px;
@@ -56,25 +56,25 @@
     display: flex;
     flex-direction: column;
     max-width: 31rem;
-    background: #fbfbfb;
-    border-right: 1px solid $profileLine;
+    background: $sidebarBg;
+    border-right: 1px solid $line;
     height: 100vh;
     &__header {
       padding: 1rem;
       text-align: right;
       a {
-        color: #999;
+        color: $labelColor;
         font-size: 1.2rem;
         line-height: 1.2rem;
         display: inline-block;
       }
       .search {
-        width: 100%;
+        width: calc(100% - 2rem);
         text-align: center;
         border: none;
         font-size: 1.2rem;
         padding: 1rem;
-        background: #efefef;
+        background: $avatarBg;
         border-radius: 5px;
         margin-top: 2rem;
         &:focus {
@@ -88,13 +88,11 @@
   }
   .message {
     &-content {
+      width: 100%;
       &-wrapper {
         display: flex;
         flex: auto;
         justify-content: center;
-        & > div {
-          width: 100%;
-        }
       }
       .empty {
         display: flex;
@@ -111,14 +109,14 @@
       flex-direction: column;
       justify-content: space-between;
       &__header {
-        & > div {
+        &-inner {
           display: flex;
           justify-content: space-between;
           align-items: center;
           width: calc(100% - 2rem);
           margin: 0 auto;
           height: 6.4rem;
-          border-bottom: 2px solid $profileLine;
+          border-bottom: 2px solid $line;
           .settings {
             cursor: pointer;
             margin-right: 2rem;
@@ -170,14 +168,14 @@
             }
             &-friend {
               .position {
-                background: #f8f8f8;
+                background: $friendMessageBg;
               }
             }
             &-your {
               display: flex;
               justify-content: flex-end;
               .position {
-                background: #e4edfd;
+                background: $myMessageBg;
               }
             }
           }
@@ -190,7 +188,7 @@
         }
       }
       &__form {
-        border-top: 2px solid $profileLine;
+        border-top: 2px solid $line;
         height: 6rem;
         display: flex;
         align-items: center;
@@ -211,7 +209,7 @@
             border-radius: 30px;
             margin-right: 1rem;
             margin-left: 3rem;
-            background: #efefef;
+            background: $avatarBg;
             border: none;
             font-size: 1.2rem;
             padding: 1rem 2rem;

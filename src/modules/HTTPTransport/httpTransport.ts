@@ -16,7 +16,8 @@ function queryStringify(data:Object) {
 
 class HTTPTransport {
   get = (url:string, options:OptionsWithoutMethod = {}):Promise<XMLHttpRequest> => {
-    return this.request(url, {...options, method: METHODS.GET}, options.timeout);
+    const urlWithData = `${url}${options.data ? queryStringify(options.data):''}`;
+    return this.request(urlWithData, {...options, method: METHODS.GET}, options.timeout);
   };
   put = (url:string, options:OptionsWithoutMethod = {}):Promise<XMLHttpRequest> => {
     return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
@@ -30,10 +31,9 @@ class HTTPTransport {
 
   request = (url:string, options:Options, timeout = 5000):Promise<XMLHttpRequest> => {
     const {method, data, headers = {}} = options;
-    const isMethodGet = method === METHODS.GET;
     return new Promise((resolve, reject)=>{
       const xhr = new XMLHttpRequest();
-      xhr.open(method as string, `${url}${isMethodGet && !!data ? queryStringify(data):''}`);
+      xhr.open(method as string, url);
 
       Object.entries(headers).forEach(([key, value])=>{
         xhr.setRequestHeader(key, value);
@@ -48,7 +48,7 @@ class HTTPTransport {
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
 
-      if (isMethodGet || !data) {
+      if (!data) {
         xhr.send();
       } else {
         xhr.send(JSON.stringify(data));

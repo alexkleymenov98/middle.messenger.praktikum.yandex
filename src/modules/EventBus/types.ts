@@ -1,11 +1,11 @@
-export type componentCircleKey = 'INIT' |'FLOW_CDM'|'FLOW_RENDER' | 'FLOW_CDU';
-export type componentCircleValue =
+export type componentCycleKey = 'INIT' |'FLOW_CDM'|'FLOW_RENDER' | 'FLOW_CDU';
+export type componentCycleValue =
   'init'
   |'flow:component-did-mount'
   |'flow:render'
   | 'flow:component-did-update';
 
-export interface IEventBus<E extends componentCircleValue, T extends Function> {
+export interface IEventBus<E extends componentCycleValue, T extends Function> {
   listeners:Record<E, T[]>;
   on(event:E, callback:T):void;
   off(event:E, callback:T):void;

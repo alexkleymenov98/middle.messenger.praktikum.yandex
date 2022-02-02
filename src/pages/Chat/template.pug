@@ -1,10 +1,9 @@
-export const template = `.message-list
+.message-list
     .sidebar
         .sidebar__header
             a(href="#profile") Профиль
             input.search(type="text", placeholder="Поиск")
         .sidebar__content
-          | !{userList}
+            | {{userList}}
     .message-content-wrapper
-      | !{content}`;
-
+        | {{content}}

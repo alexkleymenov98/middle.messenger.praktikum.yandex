@@ -9,5 +9,5 @@ export type InputProps = {
   errorText?: string;
   isValid?: boolean;
   inputValue?: string;
-  events?:ComponentEvents;
+  events?: ComponentEvents;
 };

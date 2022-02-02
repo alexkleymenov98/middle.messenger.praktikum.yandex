@@ -1,11 +1,10 @@
-import {v4 as makeUUID} from 'uuid';
 import EventBus from '../EventBus';
 import {BlockEntryProps, BlockProps, TRenderElement} from './types';
-import {componentCircleKey, componentCircleValue} from '../EventBus/types';
-import {render} from 'pug';
+import {componentCycleKey, componentCycleValue} from '../EventBus/types';
+import makeUUID from '../../utils/makeUUID';
 
 export default abstract class Block<T extends BlockProps> {
-  private static EVENTS:Record<componentCircleKey, componentCircleValue> = {
+  private static EVENTS:Record<componentCycleKey, componentCycleValue> = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
@@ -18,15 +17,13 @@ export default abstract class Block<T extends BlockProps> {
 
   props: T;
 
-  eventBus: () => EventBus;
+  eventBus: EventBus;
 
   private _id: string;
   private _children:BlockEntryProps['children'] ={
   };
 
   constructor(propsAndChildren: T, tagName = 'div', className = '') {
-    const eventBus = new EventBus();
-
     const {children, props} = this._getChildren(propsAndChildren);
 
     this._children = children;
@@ -41,10 +38,10 @@ export default abstract class Block<T extends BlockProps> {
     // @ts-ignore
     this.props = this._makePropsProxy({...props, _id: this._id});
 
-    this.eventBus = () => eventBus;
+    this.eventBus = new EventBus();
 
-    this._registerEvents(eventBus);
-    eventBus.emit(Block.EVENTS.INIT);
+    this._registerEvents(this.eventBus);
+    this.eventBus.emit(Block.EVENTS.INIT);
   }
 
   private _registerEvents(eventBus: EventBus) {
@@ -61,7 +58,7 @@ export default abstract class Block<T extends BlockProps> {
 
   init():void {
     this._createResources();
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
   private _componentDidMount():void {
@@ -74,15 +71,19 @@ export default abstract class Block<T extends BlockProps> {
   }
 
   dispatchComponentDidMount():void {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
-  componentDidUpdate(oldProps: T, newProps: T):boolean {
+  componentDidUpdate(): void {
+  }
+
+  shouldComponentUpdate(oldProps: T, newProps: T): boolean {
     return JSON.stringify(oldProps) !== JSON.stringify(newProps);
   }
 
-  private _componentDidUpdate(oldProps: T, newProps: T):void {
-    const response = this.componentDidUpdate(oldProps, newProps);
+  private _componentDidUpdate(oldProps: T, newProps: T): void {
+    const response = this.shouldComponentUpdate(oldProps, newProps);
     if (response) {
+      this.componentDidUpdate();
       this._render();
     }
   }
@@ -92,15 +93,7 @@ export default abstract class Block<T extends BlockProps> {
     const props:BlockEntryProps['props'] = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        children[key] = [];
-        value.forEach((item)=>{
-          if (item instanceof Block && Array.isArray(children[key])) {
-            // @ts-ignore
-            children[key].push(item);
-          }
-        });
-      } else if (value instanceof Block) {
+      if (value instanceof Block) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -113,38 +106,34 @@ export default abstract class Block<T extends BlockProps> {
     return this._children;
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  _compileTemplate(template:string, props:any): string {
+    const regexp = /{{(.*?)}}/g;
+    const matches = template.match(regexp);
+
+    return matches
+      ? template.split(regexp).map(
+          (chunk: string) => (props[chunk] != null ? props[chunk] : `${props[chunk] === null ?'' :chunk }`),
+      ).join('') : template;
+  }
+
   compile(template:string, props:T):DocumentFragment {
     const propsAndStubs:T = {...props};
 
     Object.entries(this.getChildren()).forEach(([key, child]) => {
-      if (Array.isArray(child)) {
-        child.forEach((itemChild)=>{
-          // @ts-ignore
-          propsAndStubs[key] = `${propsAndStubs[key] ?? ''}<div data-id="${itemChild.getId()}"></div>`;
-        });
-      } else {
-        // @ts-ignore
-        propsAndStubs[key] = `<div data-id="${child.getId()}"></div>`;
-      }
+      // @ts-ignore
+      propsAndStubs[key] = `<div data-id="${child.getId()}"></div>`;
     });
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
 
-    fragment.innerHTML = render(template, propsAndStubs);
+    fragment.innerHTML = this._compileTemplate(template, propsAndStubs);
 
     Object.values(this.getChildren()).forEach((child) => {
-      if (Array.isArray(child)) {
-        child.forEach((itemChild)=>{
-          const stub = fragment.content.querySelector(`[data-id="${itemChild.getId()}"]`);
-          stub?.replaceWith(itemChild.getContent());
-        });
-      } else {
-        const childProps = child as Block<any>;
-        const stub = fragment.content.querySelector(`[data-id="${childProps.getId()}"]`);
-        stub?.replaceWith(childProps.getContent());
-      }
+      const childProps = child as Block<any>;
+      const stub = fragment.content.querySelector(`[data-id="${childProps.getId()}"]`);
+      stub?.replaceWith(childProps.getContent());
     });
-
     return fragment.content;
   }
 
@@ -171,7 +160,7 @@ export default abstract class Block<T extends BlockProps> {
 
     this._element?.setAttribute('data-id', this._id);
 
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
 
   render(): TRenderElement {
@@ -192,7 +181,7 @@ export default abstract class Block<T extends BlockProps> {
         const oldTarget = {...target};
         // @ts-ignore
         target[prop] = value;
-        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
       deleteProperty() {

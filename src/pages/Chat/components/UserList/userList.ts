@@ -1,6 +1,6 @@
 import Block from '../../../../modules/Block';
 import {UserListProps} from './types';
-import {template} from './template';
+import template from './template.pug';
 import {TRenderElement} from '../../../../modules/Block/types';
 
 class UserList extends Block<UserListProps> {

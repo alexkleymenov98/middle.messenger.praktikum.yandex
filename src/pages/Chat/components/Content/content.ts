@@ -1,6 +1,6 @@
 import Block from '../../../../modules/Block';
 import {ContentProps} from './types';
-import {template} from './template';
+import template from './template.pug';
 import {TRenderElement} from '../../../../modules/Block/types';
 import MessageForm from '../MessageForm';
 import MessageHeader from '../MessageHeader/messageHeader';
@@ -12,12 +12,12 @@ class Content extends Block<ContentProps> {
       isEmpty: false,
       messageHeader: new MessageHeader({
         name: 'Вадим',
-        avatar: '',
+        avatarSrc: '',
       }),
       messageList: new MessageList({}),
       messageForm: new MessageForm({}),
       ...props,
-    });
+    }, 'div', 'message-content');
   }
   render(): TRenderElement {
     const props = this.props;

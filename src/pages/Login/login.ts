@@ -3,27 +3,27 @@ import Block from '../../modules/Block';
 import {LoginProps} from './types';
 import {BUTTON_NAME, InputLabel, InputName, RouterLinks, RouterLinksName} from '../../shared/const';
 import Input from '../../components/Input';
-import template from '../../layouts/Page';
+import template from '../../layouts/Page/template.pug';
 import {TRenderElement} from '../../modules/Block/types';
+
 
 class Login extends Block<LoginProps> {
   constructor(props:Partial<LoginProps>) {
     super({...props,
       title: 'Вход',
-      content: new Form({submitName: BUTTON_NAME.LOGIN,
+      content: new Form({
+        submitName: BUTTON_NAME.LOGIN,
         linkName: RouterLinksName.REGISTRATION,
         linkPath: RouterLinks.REGISTRATION,
-        content: [
-          new Input({
-            inputName: InputName.LOGIN,
-            labelName: InputLabel.LOGIN,
-          }),
-          new Input({
-            inputName: InputName.PASSWORD,
-            labelName: InputLabel.PASSWORD,
-            type: 'password',
-          }),
-        ],
+        login: new Input({
+          inputName: InputName.LOGIN,
+          labelName: InputLabel.LOGIN,
+        }),
+        password: new Input({
+          inputName: InputName.PASSWORD,
+          labelName: InputLabel.PASSWORD,
+          type: 'password',
+        }),
       })});
   }
   render(): TRenderElement {

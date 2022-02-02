@@ -1,10 +1,8 @@
 import showPage from './modules/ShowPage';
 
-window.addEventListener('load', function() {
-  showPage();
-});
+showPage(window.location.hash);
 
 window.addEventListener('hashchange', function() {
-  showPage();
+  showPage(window.location.hash);
 });
 

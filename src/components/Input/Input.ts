@@ -1,6 +1,6 @@
 import Block from '../../modules/Block';
 import {InputProps} from './types';
-import {template} from './template';
+import template from './template.pug';
 import {TValidateResult} from '../../modules/Validate/types';
 import {InputName} from '../../shared/const';
 import validator from '../../modules/Validate';
@@ -11,6 +11,7 @@ class Input extends Block<InputProps> {
     super( {
       isValid: true,
       inputValue: '',
+      errorText: '',
       events: {
         focusin: ()=>this.onFocus(),
         focusout: (e:FocusEvent)=>this.onBlur(e),
@@ -18,14 +19,13 @@ class Input extends Block<InputProps> {
       ...props,
     });
   }
-  onValidate(name:InputName, value:FormDataEntryValue | null, compareValue?:string):TValidateResult | void {
+  onValidate(name: InputName, value: FormDataEntryValue | null, compareValue?: string): TValidateResult | void {
     if (typeof value !== 'string') return;
-    return validator[name](value, compareValue);
+    const {isValid, errorText} = validator[name](value, compareValue);
+    this.onUpdate(value, isValid, errorText);
   }
 
-  onUpdate(name:InputName, value: FormDataEntryValue | null, compareValue?:string):void {
-    const {isValid, errorText} = this.onValidate(name, value, compareValue) || {};
-
+  onUpdate(value: FormDataEntryValue | null, isValid:boolean, errorText: string):void {
     this.setProps({
       ...this.props,
       isValid,
@@ -34,12 +34,12 @@ class Input extends Block<InputProps> {
     });
   }
 
-  onBlur(event: FocusEvent):void {
+  onBlur(event: FocusEvent): void {
     const {name, value} = event.target as HTMLInputElement;
-    this.onUpdate(name as InputName, value);
+    this.onValidate(name as InputName, value);
   }
 
-  onFocus():void {
+  onFocus(): void {
     this.setProps({
       ...this.props,
       isValid: true,

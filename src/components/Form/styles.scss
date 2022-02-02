@@ -1,7 +1,7 @@
 .form {
   &-container {
-    background: #fff;
-    box-shadow: 0 0 0.6rem rgb(0 0 0 / 14%);
+    background: $formBg;
+    box-shadow: 0 0 0.6rem $formBgShadow;
     border-radius: 1.2rem;
     padding: 5rem 3rem 3rem;
     &-content {

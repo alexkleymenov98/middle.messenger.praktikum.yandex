@@ -1,5 +1,5 @@
 export enum pagesHash {
-  changePassword= '#changePassword',
+  changePassword = '#changePassword',
   changeProfile = '#changeProfile',
   login = '#login',
   registration = '#registration',
@@ -7,22 +7,22 @@ export enum pagesHash {
 }
 
 export enum RouterLinks {
-  LOGIN= '/#login',
+  LOGIN = '/#login',
   REGISTRATION = '/#registration',
   CHAT = '/',
   PROFILE = '/#profile',
   CHANGE_PROFILE = '/#changeProfile',
-  CHANGE_PASSWORD = '/#changePassword'
+  CHANGE_PASSWORD = '/#changePassword',
 }
 export enum RouterLinksName {
-  LOGIN= 'Войти',
-  EXIT= 'Выйти',
+  LOGIN = 'Войти',
+  EXIT = 'Выйти',
   REGISTRATION = 'Создать аккаунт',
   CHAT = 'К чатам',
   PROFILE = 'Профиль',
   PROFILE_BACK = 'Вернуться в профиль',
   CHANGE_PROFILE = 'Изменить профиль',
-  CHANGE_PASSWORD = 'Изменить пароль'
+  CHANGE_PASSWORD = 'Изменить пароль',
 }
 export enum InputName {
   LOGIN = 'login',
@@ -54,5 +54,5 @@ export enum InputLabel {
 export enum BUTTON_NAME {
   LOGIN = 'Войти',
   REGISTRATION = 'Создать аккаунт',
-  SAVE = 'Сохранить'
+  SAVE = 'Сохранить',
 }

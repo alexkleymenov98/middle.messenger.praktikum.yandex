@@ -1,19 +1,13 @@
 import Block from '../../../../modules/Block';
 import {MessageFormProps} from './types';
 import {TRenderElement} from '../../../../modules/Block/types';
-import {template} from './template';
-// @ts-ignore
-import icon from '../../../../../static/images/arrow.svg';
-// @ts-ignore
-import messageIcon from '../../../../../static/images/message-icon.svg';
+import template from './template.pug';
 import {InputName} from '../../../../shared/const';
 import validator from '../../../../modules/Validate';
 
 class MessageForm extends Block<MessageFormProps> {
   constructor(props:Partial<MessageFormProps>) {
     super({
-      iconSubmit: icon,
-      iconSettingFile: messageIcon,
       inputName: InputName.MESSAGE,
       ...props,
       events: {

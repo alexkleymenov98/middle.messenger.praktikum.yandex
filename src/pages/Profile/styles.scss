@@ -16,7 +16,7 @@
       color: $link;
       font-size: 1.5rem;
       line-height: 3.5rem;
-      border-bottom: 1px solid $profileLine;
+      border-bottom: 1px solid $line;
       &-exit {
         color: $errorColor;
         border-bottom: none;
@@ -33,9 +33,9 @@
       font-size: 1.3rem;
       line-height: 3.3rem;
       font-weight: 600;
-      border-bottom: 1px solid $profileLine;
+      border-bottom: 1px solid $line;
       .value {
-        color: #999;
+        color: $labelColor;
       }
       &:last-child {
         border-bottom: none;

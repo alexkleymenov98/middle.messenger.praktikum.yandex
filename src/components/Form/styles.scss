@@ -1,0 +1,39 @@
+.form {
+  &-container {
+    background: $formBg;
+    box-shadow: 0 0 0.6rem $formBgShadow;
+    border-radius: 1.2rem;
+    padding: 5rem 3rem 3rem;
+    &-content {
+      display: flex;
+      flex-direction: column;
+      min-height: 45rem;
+      min-width: 32rem;
+      justify-content: space-between;
+    }
+    &__title {
+      margin: 0;
+      text-align: center;
+      font-size: 2rem;
+    }
+    &__fields {
+      padding-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      .input-field {
+        margin-bottom: 1.6rem;
+      }
+    }
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      margin-top: 4.7rem;
+      a {
+        display: flex;
+        margin-top: 1.2rem;
+        justify-content: center;
+      }
+    }
+  }
+}

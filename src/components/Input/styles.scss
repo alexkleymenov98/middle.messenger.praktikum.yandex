@@ -1,0 +1,38 @@
+.input {
+  &-label {
+    color: $labelColor;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .error-text {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      font-size: 1rem;
+    }
+  }
+  &-field {
+    font-weight: 600;
+    font-size: 1.3rem;
+    line-height: 2.9rem;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $labelColor;
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid $link;
+    }
+    &-error {
+      color: $errorColor;
+    }
+    &-submit {
+      background: $buttonBg;
+      border: none;
+      border-radius: 0.8rem;
+      color: $buttonColor;
+      font-size: 1.3rem;
+      padding: 1.2rem;
+      cursor: pointer;
+    }
+  }
+}

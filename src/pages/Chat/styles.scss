@@ -1,69 +1,18 @@
-.message-list {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    max-width: 31rem;
-    flex: 1;
-    background: #FBFBFB;
-    border-right: 1px solid $profileLine;
-    height: 100vh;
-    &__header {
-      padding: 1rem;
-      text-align: right;
-      a {
-        color:#999;
-        font-size: 1.2rem;
-        line-height: 1.2rem;
-        display: inline-block;
-      }
-      .search {
-        width: 100%;
-        text-align: center;
-        border:none;
-        font-size: 1.2rem;
-        padding: 1rem;
-        background: #EFEFEF;
-        border-radius: 5px;
-        margin-top: 2rem;
-        &:focus{
-          outline: none;
-        }
-      }
-    }
-    &__content {
-      overflow-y: auto;
-    }
-  }
-  .message-content {
-    flex: auto;
-    .empty {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      width: 100%;
-    }
-  }
-}
-
 .user {
   &-item {
-    border-top: 1px solid $profileLine;
+    border-top: 1px solid $line;
     position: relative;
     padding: 1rem 5rem 1rem 6.7rem;
     min-height: 5.1rem;
     cursor: pointer;
     &:hover {
-      background: #E4EDFD;
+      background: $myMessageBg;
     }
     p {
-      color: #999999;
+      color: $labelColor;
       font-size: 1.2rem;
       line-height: 1.5rem;
-      margin: 4px 0 0 0;
+      margin: 4px 0 0;
     }
     &__title {
       margin: 0;
@@ -73,7 +22,7 @@
     &__avatar {
       position: absolute;
       left: 1rem;
-      top:1rem;
+      top: 1rem;
       .avatar {
         height: 4.7rem;
         width: 4.7rem;
@@ -82,20 +31,203 @@
     &__time {
       position: absolute;
       right: 1rem;
-      top:1rem;
+      top: 1rem;
     }
     &__new-message {
       position: absolute;
       right: 1rem;
-      bottom:1rem;
+      bottom: 1rem;
       background: $buttonBg;
-      color:#fff;
+      color: $myMessageColor;
       min-width: 20px;
       min-height: 20px;
       border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+}
+.message-list {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    max-width: 31rem;
+    background: $sidebarBg;
+    border-right: 1px solid $line;
+    height: 100vh;
+    &__header {
+      padding: 1rem;
+      text-align: right;
+      a {
+        color: $labelColor;
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        display: inline-block;
+      }
+      .search {
+        width: calc(100% - 2rem);
+        text-align: center;
+        border: none;
+        font-size: 1.2rem;
+        padding: 1rem;
+        background: $avatarBg;
+        border-radius: 5px;
+        margin-top: 2rem;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    &__content {
+      overflow-y: auto;
+    }
+  }
+  .message {
+    &-content {
+      width: 100%;
+      &-wrapper {
+        display: flex;
+        flex: auto;
+        justify-content: center;
+      }
+      .empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      }
+    }
+    &-container {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      &__header {
+        &-inner {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: calc(100% - 2rem);
+          margin: 0 auto;
+          height: 6.4rem;
+          border-bottom: 2px solid $line;
+          .settings {
+            cursor: pointer;
+            margin-right: 2rem;
+          }
+          .user-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0.5rem 0;
+            &:hover {
+              background: none;
+            }
+            &__avatar {
+              position: static;
+              margin-right: 1rem;
+            }
+          }
+        }
+      }
+      &__list {
+        height: calc(100vh - 13.4rem);
+        overflow-y: auto;
+        display: flex;
+        align-items: flex-end;
+        width: calc(100% - 2rem);
+        margin: 0 auto;
+        .dialog {
+          margin-top: 2rem;
+          &-message {
+            margin-bottom: 1rem;
+            .position {
+              display: inline-block;
+              max-width: 40%;
+              border-radius: 1rem;
+              padding: 11px 11px 20px;
+              position: relative;
+              .text {
+                p {
+                  margin: 0;
+                  padding: 0;
+                }
+              }
+              .time {
+                position: absolute;
+                font-size: 0.9rem;
+                right: 1.1rem;
+                bottom: 0.5rem;
+              }
+            }
+            &-friend {
+              .position {
+                background: $friendMessageBg;
+              }
+            }
+            &-your {
+              display: flex;
+              justify-content: flex-end;
+              .position {
+                background: $myMessageBg;
+              }
+            }
+          }
+          &__day {
+            text-align: center;
+          }
+          &-list {
+            width: 100%;
+          }
+        }
+      }
+      &__form {
+        border-top: 2px solid $line;
+        height: 6rem;
+        display: flex;
+        align-items: center;
+        width: calc(100% - 2rem);
+        margin: 0 auto;
+        .message-form {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          &__settings {
+            display: flex;
+            flex: 1;
+          }
+          &__input {
+            display: flex;
+            flex: auto;
+            width: 100%;
+            border-radius: 30px;
+            margin-right: 1rem;
+            margin-left: 3rem;
+            background: $avatarBg;
+            border: none;
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+            &:focus {
+              outline: none;
+            }
+          }
+          &__btn {
+            flex: 1;
+            border: none;
+            background: $buttonBg;
+            max-width: 2.8rem;
+            height: 2.8rem;
+            border-radius: 2.8rem;
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 }

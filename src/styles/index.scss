@@ -1,4 +1,10 @@
 @import "variables";
+@import "../pages/Errors/styles";
+@import "../layouts/Content/styles";
+@import "../components/Form/styles";
+@import "../components/Input/styles";
+@import "../pages/Profile/styles";
+@import "../pages/Chat/styles";
 html {
   font-size: 10px;
 }
@@ -7,19 +13,18 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-size: 1.3rem;
-  color: #1E1E1E;
-  font-family: 'Inter', sans-serif;
+  color: #1e1e1e;
+  font-family: Inter, sans-serif;
 }
 a {
   text-decoration: none;
-  color:$link;
-  &:visited{
+  color: $link;
+  &:visited {
     color: $link;
   }
 }
-
 .error {
-  &-text{
+  &-text {
     color: $errorColor;
   }
 }
@@ -27,6 +32,7 @@ a {
   background: $avatarBg;
   width: 13rem;
   height: 13rem;
+  cursor: pointer;
   border-radius: 100%;
   &-default {
     display: flex;
@@ -34,12 +40,6 @@ a {
     justify-content: center;
   }
 }
-@import "../layouts/PageError/styles";
-@import "../layouts/Content/styles";
-@import "../layouts/Form/styles";
-@import "../components/InputField/styles";
-@import "../pages/Profile/styles";
-@import "../pages/Chat/styles";
 .show {
   display: block;
 }

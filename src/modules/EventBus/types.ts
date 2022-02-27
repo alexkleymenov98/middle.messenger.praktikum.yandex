@@ -5,7 +5,7 @@ export type componentCycleValue =
   |'flow:render'
   | 'flow:component-did-update';
 
-export interface IEventBus<E extends componentCycleValue, T extends Function> {
+export interface IEventBus<E extends string, T extends Function> {
   listeners:Record<E, T[]>;
   on(event:E, callback:T):void;
   off(event:E, callback:T):void;

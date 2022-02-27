@@ -1,7 +1,6 @@
 import Block from '../modules/Block';
-import {BlockProps} from '../modules/Block/types';
 
-export const render = (query:string, block:Block<BlockProps>):Element | null=>{
+export const render = (query:string, block:Block):Element | null=>{
   const root = document.querySelector(query);
   if (root) {
     root.replaceChildren(block.getContent());

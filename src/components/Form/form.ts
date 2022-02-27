@@ -18,6 +18,7 @@ class Form extends Block<FormProps> {
       [InputName.OLD_PASSWORD]: null,
       [InputName.NEW_PASSWORD]: null,
       [InputName.CONFIRM]: null,
+      [InputName.TITLE]: null,
       ...props,
       events: {
         submit: (event: Event) => this.onSubmit(event),
@@ -41,8 +42,10 @@ class Form extends Block<FormProps> {
         }
       }
     });
+
     return Object.values(children)
-        .every((input)=>input && input instanceof Input && input.props.isValid);
+        .filter((child)=>child instanceof Input)
+        .every((input)=>input && input.props.isValid);
   }
 
   onSubmit(event: Event): void {
@@ -59,13 +62,18 @@ class Form extends Block<FormProps> {
           }
         }
       });
-      console.log(data);
+      if (this.props.handlerSubmit) {
+        if ('confirm' in data) {
+          delete data.confirm;
+        }
+        this.props.handlerSubmit(data);
+      }
     }
   }
 
   render(): TRenderElement {
-    const {submitName = 'Отправить', ...rest} = this.props;
-    return this.compile(template, {submitName, ...rest});
+    const {submitName = 'Отправить', errorTextForm = '', ...rest} = this.props;
+    return this.compile(template, {submitName, errorTextForm, ...rest});
   }
 }
 export default Form;

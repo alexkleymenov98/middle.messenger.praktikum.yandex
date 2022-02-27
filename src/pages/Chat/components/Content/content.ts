@@ -9,7 +9,7 @@ import MessageList from '../MessageList';
 class Content extends Block<ContentProps> {
   constructor(props:Partial<ContentProps>) {
     super({
-      isEmpty: false,
+      isEmpty: true,
       messageHeader: new MessageHeader({
         name: 'Вадим',
         avatarSrc: '',

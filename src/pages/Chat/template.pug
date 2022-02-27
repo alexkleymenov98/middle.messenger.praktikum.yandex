@@ -1,8 +1,12 @@
+.modal
+    | {{modal}}
 .message-list
     .sidebar
         .sidebar__header
-            a(href="#profile") Профиль
+            | {{linkProfile}}
             input.search(type="text", placeholder="Поиск")
+        .actions
+            button="Создать чат"
         .sidebar__content
             | {{userList}}
     .message-content-wrapper

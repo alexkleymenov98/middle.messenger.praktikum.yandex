@@ -5,6 +5,9 @@ import {BUTTON_NAME, InputLabel, InputName, RouterLinks, RouterLinksName} from '
 import Input from '../../components/Input';
 import template from '../../layouts/Page/template.pug';
 import {TRenderElement} from '../../modules/Block/types';
+import Link from '../../components/Link';
+import AuthServices from '../../services/authServices';
+import {LoginRequest} from '../../api/auth/types';
 
 
 class Login extends Block<LoginProps> {
@@ -13,8 +16,13 @@ class Login extends Block<LoginProps> {
       title: 'Вход',
       content: new Form({
         submitName: BUTTON_NAME.LOGIN,
-        linkName: RouterLinksName.REGISTRATION,
-        linkPath: RouterLinks.REGISTRATION,
+        handlerSubmit: (values)=>{
+          new AuthServices().login(values as LoginRequest);
+        },
+        link:
+          new Link(
+              {label: RouterLinksName.REGISTRATION,
+                path: RouterLinks.REGISTRATION}),
         login: new Input({
           inputName: InputName.LOGIN,
           labelName: InputLabel.LOGIN,

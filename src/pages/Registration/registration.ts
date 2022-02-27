@@ -5,15 +5,23 @@ import {BUTTON_NAME, InputLabel, InputName, RouterLinks, RouterLinksName} from '
 import Input from '../../components/Input';
 import template from '../../layouts/Page/template.pug';
 import {TRenderElement} from '../../modules/Block/types';
+import Link from '../../components/Link';
+import AuthServices from '../../services/authServices';
+import {SignUpRequest} from '../../api/auth/types';
 
 class Registration extends Block<RegistrationProps> {
   constructor(props:Partial<RegistrationProps>) {
     super({...props,
       title: 'Регистрация',
       content: new Form({
-        linkName: RouterLinksName.LOGIN,
-        linkPath: RouterLinks.LOGIN,
+        link: new Link({
+          label: RouterLinksName.LOGIN,
+          path: RouterLinks.LOGIN,
+        }),
         submitName: BUTTON_NAME.REGISTRATION,
+        handlerSubmit: (values)=>{
+          new AuthServices().singUp(values as SignUpRequest);
+        },
         [InputName.EMAIL]: new Input({
           inputName: InputName.EMAIL,
           labelName: InputLabel.EMAIL,

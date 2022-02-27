@@ -1,3 +1,7 @@
 import Form from './form';
+import {connect} from '../../modules/Store/connect';
 
-export default Form;
+export default connect(
+    Form,
+    ({errorTextForm}) => ({errorTextForm})
+);

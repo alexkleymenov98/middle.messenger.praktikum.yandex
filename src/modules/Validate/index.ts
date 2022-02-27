@@ -21,6 +21,7 @@ const validator:TValidate = {
   [InputName.NEW_PASSWORD]: passwordValidate,
   [InputName.OLD_PASSWORD]: passwordValidate,
   [InputName.MESSAGE]: emptyValidate,
+  [InputName.TITLE]: emptyValidate,
 };
 
 export default validator;

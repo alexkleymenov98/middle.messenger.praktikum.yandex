@@ -3,7 +3,9 @@ import {BlockEntryProps, BlockProps, TRenderElement} from './types';
 import {componentCycleKey, componentCycleValue} from '../EventBus/types';
 import makeUUID from '../../utils/makeUUID';
 
-export default abstract class Block<T extends BlockProps> {
+export type TBlock = typeof Block;
+
+export default abstract class Block<T extends object = BlockProps> {
   private static EVENTS:Record<componentCycleKey, componentCycleValue> = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -64,6 +66,8 @@ export default abstract class Block<T extends BlockProps> {
   private _componentDidMount():void {
     this._addEvents();
     this.componentDidMount();
+    // @ts-ignore
+    Object.values(this.getChildren()).forEach((child)=>child.dispatchComponentDidMount());
   }
 
   componentDidMount():void {
@@ -72,6 +76,9 @@ export default abstract class Block<T extends BlockProps> {
 
   dispatchComponentDidMount():void {
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
+    if (Object.keys(this.getChildren()).length) {
+      this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+    }
   }
   componentDidUpdate(): void {
   }
@@ -174,6 +181,7 @@ export default abstract class Block<T extends BlockProps> {
   private _makePropsProxy(props: T) {
     return new Proxy(props, {
       get(target, prop:string) {
+        // @ts-ignore
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },

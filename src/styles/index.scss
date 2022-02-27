@@ -5,6 +5,7 @@
 @import "../components/Input/styles";
 @import "../pages/Profile/styles";
 @import "../pages/Chat/styles";
+@import "../components/modal/styles";
 html {
   font-size: 10px;
 }
@@ -38,6 +39,11 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    img {
+      object-fit: cover;
+      max-width: 100%;
+    }
   }
 }
 .show {

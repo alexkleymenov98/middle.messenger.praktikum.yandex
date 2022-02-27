@@ -1,7 +1,8 @@
+import {TStore} from '../../modules/Store/types';
 import Navigation from './components/Navigation';
+import Avatar from './components/Avatar';
 
 export type ProfileProps = {
-  name: string;
-  avatar: string;
+  avatarBlock: Avatar;
   navigation: Navigation;
-}
+} & TStore['user'];

@@ -1,46 +1,48 @@
+import queryStringify from './queryStringify';
 import {Options, METHODS, OptionsWithoutMethod} from './types';
+import {ENDPOINTS} from '../../api/consts';
 
-function queryStringify(data:Object) {
-  // Можно делать трансформацию GET-параметров в отдельной функции
-  let result = '';
-  Object.entries(data).forEach(([key, value], index)=>{
-    if (index === 0) {
-      result = '?';
-    } else {
-      result = `${result}&`;
-    }
-    result = `${result}${key}=${value}`;
-  });
-  return result;
-}
 
 class HTTPTransport {
-  get = (url:string, options:OptionsWithoutMethod = {}):Promise<XMLHttpRequest> => {
+  baseUrl:string = ENDPOINTS.HTTP;
+  isFile:boolean = false;
+  constructor(urlSection:string, file?:boolean) {
+    this.baseUrl += urlSection;
+    if (file) {
+      this.isFile = file;
+    }
+  }
+  get = (url:string, options:OptionsWithoutMethod = {}):Promise<string> => {
     const urlWithData = `${url}${options.data ? queryStringify(options.data):''}`;
     return this.request(urlWithData, {...options, method: METHODS.GET}, options.timeout);
   };
-  put = (url:string, options:OptionsWithoutMethod = {}):Promise<XMLHttpRequest> => {
+  put = (url:string, options:OptionsWithoutMethod = {}):Promise<string> => {
     return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
   };
-  post = (url:string, options:OptionsWithoutMethod = {}):Promise<XMLHttpRequest> => {
+  post = (url:string, options:OptionsWithoutMethod = {}):Promise<string> => {
     return this.request(url, {...options, method: METHODS.POST}, options.timeout);
   };
-  delete = (url:string, options:OptionsWithoutMethod = {}):Promise<XMLHttpRequest> => {
+  delete = (url:string, options:OptionsWithoutMethod = {}):Promise<string> => {
     return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
   };
 
-  request = (url:string, options:Options, timeout = 5000):Promise<XMLHttpRequest> => {
-    const {method, data, headers = {}} = options;
+  request = (url:string, options:Options, timeout = 5000):Promise<string> => {
+    const {method, data, headers = this.isFile ? {}:{'content-type': 'application/json'}} = options;
     return new Promise((resolve, reject)=>{
       const xhr = new XMLHttpRequest();
-      xhr.open(method as string, url);
-
+      xhr.open(method as string, `${this.baseUrl}${url}`);
+      xhr.withCredentials = true;
       Object.entries(headers).forEach(([key, value])=>{
         xhr.setRequestHeader(key, value);
       });
 
       xhr.onload = function() {
-        resolve(xhr);
+        const {status, response} = xhr;
+        if ([200, 201].includes(status)) {
+          return resolve(response);
+        }
+        // eslint-disable-next-line prefer-promise-reject-errors
+        return reject(JSON.parse(response));
       };
 
       xhr.onabort = reject;
@@ -51,7 +53,7 @@ class HTTPTransport {
       if (!data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(this.isFile ? data : JSON.stringify(data));
       }
     });
   };

@@ -52,7 +52,7 @@ const setMessageList = (payload:MessageResponse[]):void=>{
 const setNewMessage = (payload:MessageResponse):void =>{
   const activeChat = Store.getState().activeChat;
   if (activeChat?.messageList) {
-    setMessageList([...activeChat?.messageList, payload]);
+    setMessageList([payload, ...activeChat?.messageList]);
   }
 };
 

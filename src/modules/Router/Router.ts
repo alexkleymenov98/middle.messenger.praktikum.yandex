@@ -16,7 +16,7 @@ class Router {
   private static __instance: Router;
   private _rootQuery: string;
 
-  constructor(windowData: Window) {
+  constructor(windowData: Window, selector: string) {
     this.isAuth = false;
     if (Router.__instance) {
       return Router.__instance;
@@ -26,7 +26,7 @@ class Router {
     this.window = windowData;
     this._currentRoute = null;
     Router.__instance = this;
-    this._rootQuery = `#app`;
+    this._rootQuery = selector;
   }
 
   enterAuth(value:boolean):Router {

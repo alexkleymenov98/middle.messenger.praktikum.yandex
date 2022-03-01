@@ -1,3 +1,3 @@
 import Router from './Router';
 
-export default new Router(window);
+export default new Router(window, '#app');

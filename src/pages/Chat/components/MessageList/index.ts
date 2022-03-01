@@ -11,7 +11,6 @@ export default connect(MessageList, ({activeChat, user})=>{
   }
   return {
     messages: activeChat.messageList
-        .sort((a, b)=>a.id < b.id ? 1:-1)
         .map(({content, time, user_id})=>
           new Message(
               {

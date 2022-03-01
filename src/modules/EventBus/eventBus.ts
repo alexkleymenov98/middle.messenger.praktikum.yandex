@@ -15,6 +15,7 @@ class EventBus<T extends string = string> {
     }
     this.listeners[event] = this.listeners[event].filter((listener)=>listener !== callback);
   }
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   emit(event: T, ...args:any):void {
     if (!this.listeners[event]) {
       throw Error('event not found');

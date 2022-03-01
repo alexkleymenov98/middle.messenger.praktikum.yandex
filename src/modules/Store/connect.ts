@@ -4,6 +4,7 @@ import {StoreEvents} from './enums';
 import {BlockProps} from '../Block/types';
 import {TStore} from './types';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function connect(Component: typeof Block, mapStateToProps:(state:TStore)=>TStore) {
   return class extends Component {
     constructor(props: BlockProps) {

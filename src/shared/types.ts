@@ -1,5 +1,14 @@
 import Form from '../components/Form';
 
+export type Success = 'ОК';
+
+export type TID = {
+  id: number;
+}
+export type Token = {
+  token: string;
+}
+
 export type PageProps = {
   title: string;
   content: Form;
@@ -34,5 +43,23 @@ export type TChatResponse = {
     user: TUserLastMessage;
     time: string;
     content: string;
+  }
+};
+
+export type MessageResponse = {
+  id: number;
+  chat_id: number
+  time: string
+  type: string
+  user_id: number
+  content: string
+  file?: {
+    id: number
+    user_id: number
+    path: string
+    filename: string
+    content_type: string
+    content_size: number
+    upload_date: string
   }
 };

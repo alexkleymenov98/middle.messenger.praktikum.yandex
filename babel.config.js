@@ -7,5 +7,9 @@ module.exports = (api) => {
     '@babel/preset-env',
   ];
 
-  return {presets};
+  const plugins = [
+    '@babel/plugin-transform-runtime',
+  ];
+
+  return {presets, plugins};
 };

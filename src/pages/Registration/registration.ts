@@ -20,7 +20,7 @@ class Registration extends Block<RegistrationProps> {
         }),
         submitName: BUTTON_NAME.REGISTRATION,
         handlerSubmit: (values)=>{
-          new AuthServices().singUp(values as SignUpRequest);
+          AuthServices.singUp(values as SignUpRequest);
         },
         [InputName.EMAIL]: new Input({
           inputName: InputName.EMAIL,

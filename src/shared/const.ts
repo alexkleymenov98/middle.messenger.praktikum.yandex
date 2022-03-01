@@ -5,6 +5,7 @@ export enum RouterLinks {
   PROFILE = '/settings',
   CHANGE_PROFILE = '/settings/change-profile',
   CHANGE_PASSWORD = '/settings/change-password',
+  ERROR_404 = '/404',
 }
 export enum RouterLinksName {
   LOGIN = 'Войти',
@@ -29,6 +30,7 @@ export enum InputName {
   NEW_PASSWORD = 'newPassword',
   MESSAGE = 'message',
   TITLE = 'title',
+  USER_ID = 'user_id'
 }
 export enum InputLabel {
   LOGIN = 'Логин',
@@ -43,6 +45,7 @@ export enum InputLabel {
   OLD_PASSWORD = 'Старый пароль',
   NEW_PASSWORD = 'Новый пароль',
   CHAT_NAME = 'Название чата',
+  USER_ID = 'ID пользователя',
 }
 
 export enum BUTTON_NAME {
@@ -54,4 +57,5 @@ export enum BUTTON_NAME {
 export enum ROUTE_ACCESS {
   PUBLIC = 'public',
   PRIVATE = 'private',
+  ERROR = 'error',
 }

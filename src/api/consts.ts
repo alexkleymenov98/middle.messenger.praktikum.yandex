@@ -1,7 +1,11 @@
 export const ENDPOINTS = {
   HTTP: 'https://ya-praktikum.tech/api/v2',
+  WSS: 'wss://ya-praktikum.tech/ws',
   CHATS: {
     PATH: '/chats',
+    USERS: '/users',
+    TOKEN: '/token',
+
   },
   AUTH: {
     PATH: '/auth',

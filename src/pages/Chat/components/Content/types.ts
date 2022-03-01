@@ -1,9 +1,10 @@
 import MessageForm from '../MessageForm';
-import MessageHeader from '../MessageHeader/messageHeader';
 import MessageList from '../MessageList';
+import MessageHeader from '../MessageHeader/messageHeader';
 
 export type ContentProps = {
-  isEmpty: boolean;
+  showMessage:string;
+  showEmpty: string;
   messageHeader: MessageHeader;
   messageList: MessageList;
   messageForm: MessageForm;

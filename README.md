@@ -13,6 +13,7 @@
 - `npm run eslint` — запуск линтера для JS,
 - `npm run stylelint` — запуск линтера для стилей.
 - `npm run stylelintFixed` — исправление ошибок стилей.
+- `npm run test` — запуск тестирования проекта.
 
 ## Дизайн
 - «[Макеты экранов в фигма](https://www.figma.com/file/vpmKIFUeQuiuCdSBtU456a/messanger?node-id=0%3A1)»,

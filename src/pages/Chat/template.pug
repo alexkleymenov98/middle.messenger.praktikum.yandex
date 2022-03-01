@@ -4,9 +4,8 @@
     .sidebar
         .sidebar__header
             | {{linkProfile}}
-            input.search(type="text", placeholder="Поиск")
         .actions
-            button="Создать чат"
+            | {{actions}}
         .sidebar__content
             | {{userList}}
     .message-content-wrapper

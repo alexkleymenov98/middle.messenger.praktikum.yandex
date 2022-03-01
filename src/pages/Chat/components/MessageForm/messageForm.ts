@@ -4,8 +4,10 @@ import {TRenderElement} from '../../../../modules/Block/types';
 import template from './template.pug';
 import {InputName} from '../../../../shared/const';
 import validator from '../../../../modules/Validate';
+import ChatsServices from '../../../../services/chatsServices';
 
 class MessageForm extends Block<MessageFormProps> {
+  socket:WebSocket;
   constructor(props:Partial<MessageFormProps>) {
     super({
       inputName: InputName.MESSAGE,
@@ -28,7 +30,10 @@ class MessageForm extends Block<MessageFormProps> {
       [InputName.MESSAGE]: formData.get(InputName.MESSAGE),
     };
     if (this.onValid(InputName.MESSAGE, form[InputName.MESSAGE])) {
-      console.log(form);
+      ChatsServices.sendMessageSocket(form[InputName.MESSAGE] as string);
+      const component = this.getContent();
+      const formElement = component.querySelector('#message-form') as HTMLFormElement;
+      formElement.reset();
     }
   }
 

@@ -1,29 +1,31 @@
 import Route from './Route';
-import {render} from '../../utils/renderDom';
-import Errors from '../../pages/Errors';
 import Block from '../Block';
 import {TRouteProps} from './types';
 import {RouterLinks} from '../../shared/const';
 
+export enum RouterEvents {
+  UPDATED = 'updated',
+}
+
 class Router {
   isAuth: boolean;
   routes: Route[];
+  window: Window;
   history: History;
   _currentRoute: null | Route;
   private static __instance: Router;
   private _rootQuery: string;
-  private error404: Block;
 
-  constructor() {
+  constructor(windowData: Window) {
     this.isAuth = false;
     if (Router.__instance) {
       return Router.__instance;
     }
     this.routes = [];
-    this.history = window.history;
+    this.history = windowData.history;
+    this.window = windowData;
     this._currentRoute = null;
     Router.__instance = this;
-    this.error404 = new Errors({code: 404, text: 'Не туда попали'});
     this._rootQuery = `#app`;
   }
 
@@ -33,16 +35,17 @@ class Router {
   }
 
   start(): void {
-    window.onpopstate = (event:PopStateEvent) => {
+    this.window.onpopstate = (event:PopStateEvent) => {
       this._onRoute((event.currentTarget as typeof window).location.pathname);
     };
-    this._onRoute(window.location.pathname);
+    this._onRoute(this.window.location.pathname);
   }
 
   _onRoute(pathname: string): void {
     const route = this.getRoute(pathname);
     if (!route || (!this.isAuth && route.accessRight === 'private')) {
-      render(this._rootQuery, this.error404);
+      const route404 = this.routes.find((route) => route.match(RouterLinks.ERROR_404));
+      route404?.render();
       return;
     }
     if (this.isAuth && route.accessRight === 'public') {

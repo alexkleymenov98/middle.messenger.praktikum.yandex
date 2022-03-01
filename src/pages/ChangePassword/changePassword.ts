@@ -17,7 +17,7 @@ class ChangePassword extends Block<ChangePasswordProps> {
       content: new Form({
         submitName: BUTTON_NAME.SAVE,
         handlerSubmit: (values: ChangePasswordRequest) => {
-          new UserServices().updateUserPassword(values);
+          UserServices.updateUserPassword(values);
         },
         link: new Link({
           path: RouterLinks.PROFILE,

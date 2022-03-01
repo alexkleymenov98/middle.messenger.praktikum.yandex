@@ -7,16 +7,18 @@ import {RouterLinks} from './shared/const';
 import ChangeProfile from './pages/ChangeProfile';
 import ChangePassword from './pages/ChangePassword';
 import AuthServices from './services/authServices';
-import Store from './modules/Store/store';
+import {getUser} from './modules/Store/actions';
+import {Error404} from './pages/Errors';
 
-new AuthServices().getUser().then(() => {
-  const isAuth = !!Store.getState().user;
+AuthServices.getUser().then(() => {
+  const isAuth = !!getUser();
   Router.enterAuth(isAuth)
       .use(RouterLinks.LOGIN, Login, 'public')
       .use(RouterLinks.REGISTRATION, Registration, 'public')
       .use(RouterLinks.CHAT, Chat, 'private')
       .use(RouterLinks.PROFILE, Profile, 'private')
       .use(RouterLinks.CHANGE_PROFILE, ChangeProfile, 'private')
-      .use(RouterLinks.CHANGE_PASSWORD, ChangePassword, 'private');
+      .use(RouterLinks.CHANGE_PASSWORD, ChangePassword, 'private')
+      .use(RouterLinks.ERROR_404, Error404, 'error');
   Router.start();
 });

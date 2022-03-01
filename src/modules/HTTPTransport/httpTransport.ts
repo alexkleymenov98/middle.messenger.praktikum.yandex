@@ -12,21 +12,21 @@ class HTTPTransport {
       this.isFile = file;
     }
   }
-  get = (url:string, options:OptionsWithoutMethod = {}):Promise<string> => {
+  get = <R>(url:string, options:OptionsWithoutMethod = {}):Promise<R> => {
     const urlWithData = `${url}${options.data ? queryStringify(options.data):''}`;
-    return this.request(urlWithData, {...options, method: METHODS.GET}, options.timeout);
+    return this.request<R>(urlWithData, {...options, method: METHODS.GET}, options.timeout);
   };
-  put = (url:string, options:OptionsWithoutMethod = {}):Promise<string> => {
-    return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
+  put = <R>(url:string, options:OptionsWithoutMethod = {}):Promise<R> => {
+    return this.request<R>(url, {...options, method: METHODS.PUT}, options.timeout);
   };
-  post = (url:string, options:OptionsWithoutMethod = {}):Promise<string> => {
-    return this.request(url, {...options, method: METHODS.POST}, options.timeout);
+  post = <R>(url:string, options:OptionsWithoutMethod = {}):Promise<R> => {
+    return this.request<R>(url, {...options, method: METHODS.POST}, options.timeout);
   };
-  delete = (url:string, options:OptionsWithoutMethod = {}):Promise<string> => {
-    return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
+  delete = <R>(url:string, options:OptionsWithoutMethod = {}):Promise<R> => {
+    return this.request<R>(url, {...options, method: METHODS.DELETE}, options.timeout);
   };
 
-  request = (url:string, options:Options, timeout = 5000):Promise<string> => {
+  request = <R>(url:string, options:Options, timeout = 5000):Promise<R> => {
     const {method, data, headers = this.isFile ? {}:{'content-type': 'application/json'}} = options;
     return new Promise((resolve, reject)=>{
       const xhr = new XMLHttpRequest();
@@ -39,7 +39,13 @@ class HTTPTransport {
       xhr.onload = function() {
         const {status, response} = xhr;
         if ([200, 201].includes(status)) {
-          return resolve(response);
+          let dataResponse:R;
+          if (response === 'OK') {
+            dataResponse = response;
+          } else {
+            dataResponse = JSON.parse(response);
+          }
+          return resolve(dataResponse);
         }
         // eslint-disable-next-line prefer-promise-reject-errors
         return reject(JSON.parse(response));

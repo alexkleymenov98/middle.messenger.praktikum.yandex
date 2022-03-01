@@ -6,14 +6,22 @@ import {TStore} from './types';
 class Store extends EventBus<StoreEvents> {
   constructor() {
     super();
-    this.on(StoreEvents.Updated, ()=>{});
+    this.on(StoreEvents.Updated, () => {
+    });
   }
-  private state:TStore = {
+
+  private state: TStore = {
+    chats: [],
     errorTextForm: '',
     user: null,
+    activeChat: null,
+    modal: {
+      type: null,
+      isShow: false,
+    },
   };
 
-  getState():TStore {
+  getState(): TStore {
     return this.state;
   }
 
@@ -22,4 +30,5 @@ class Store extends EventBus<StoreEvents> {
     this.emit(StoreEvents.Updated);
   }
 }
+
 export default new Store();

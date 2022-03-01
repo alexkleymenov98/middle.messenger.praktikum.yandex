@@ -17,7 +17,7 @@ class Login extends Block<LoginProps> {
       content: new Form({
         submitName: BUTTON_NAME.LOGIN,
         handlerSubmit: (values)=>{
-          new AuthServices().login(values as LoginRequest);
+          AuthServices.login(values as LoginRequest);
         },
         link:
           new Link(

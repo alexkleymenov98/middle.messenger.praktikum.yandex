@@ -19,6 +19,7 @@ class Form extends Block<FormProps> {
       [InputName.NEW_PASSWORD]: null,
       [InputName.CONFIRM]: null,
       [InputName.TITLE]: null,
+      [InputName.USER_ID]: null,
       ...props,
       events: {
         submit: (event: Event) => this.onSubmit(event),

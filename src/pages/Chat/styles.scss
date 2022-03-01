@@ -82,6 +82,10 @@
         }
       }
     }
+    .actions {
+      display: flex;
+      padding: 1rem;
+    }
     &__content {
       overflow-y: auto;
     }
@@ -122,16 +126,36 @@
             margin-right: 2rem;
           }
           .user-item {
+            &-wrapper {
+              display: flex;
+            }
+            position: relative;
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding: 0.5rem 0;
+            background: $buttonBg;
+            padding: 0.1rem 3rem 0 2rem;
+            border-radius: 2rem;
+            color: $buttonColor;
+            font-size: 15px;
+            margin-right: 5px;
             &:hover {
-              background: none;
+              .close {
+                display: flex;
+              }
             }
-            &__avatar {
-              position: static;
-              margin-right: 1rem;
+            .close {
+              width: 15px;
+              height: 15px;
+              border-radius: 15px;
+              background: #fff;
+              font-size: 12px;
+              color: #000;
+              display: none;
+              align-items: center;
+              justify-content: center;
+              position: absolute;
+              right: 10px;
             }
           }
         }
@@ -139,8 +163,6 @@
       &__list {
         height: calc(100vh - 13.4rem);
         overflow-y: auto;
-        display: flex;
-        align-items: flex-end;
         width: calc(100% - 2rem);
         margin: 0 auto;
         .dialog {
@@ -182,7 +204,7 @@
           &__day {
             text-align: center;
           }
-          &-list {
+          &__list {
             width: 100%;
           }
         }

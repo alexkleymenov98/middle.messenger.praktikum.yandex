@@ -37,7 +37,7 @@ class Navigation extends Block<NavigationProps> {
 
   onLogout(event:Event): void {
     event.preventDefault();
-    new AuthServices().logout();
+    AuthServices.logout();
   }
 
   render(): TRenderElement {

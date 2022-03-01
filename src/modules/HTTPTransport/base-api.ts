@@ -1,15 +1,16 @@
 
 export class BaseApi {
-  create(param:unknown): Promise<unknown> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  create(param: unknown): Promise<unknown> {
     throw new Error('Not implemented');
   }
   request(param?:unknown): void | Promise<unknown> {
     throw new Error('Not implemented');
   }
-  update(): void {
+  update(param:unknown):void | Promise<unknown> {
     throw new Error('Not implemented');
   }
-  delete(): void {
+  delete(param?:unknown): void {
     throw new Error('Not implemented');
   }
 }

@@ -1,12 +1,13 @@
 import HTTP, {BaseApi} from '../../modules/HTTPTransport';
 import {ENDPOINTS} from '../consts';
+import {TUserResponse} from '../../shared/types';
 
 const authApiInstance = new HTTP(ENDPOINTS.AUTH.PATH);
 
 class AuthApi extends BaseApi {
-  request():Promise<any> {
-    return authApiInstance.get(ENDPOINTS.AUTH.USER);
+  request():Promise<TUserResponse> {
+    return authApiInstance.get<TUserResponse>(ENDPOINTS.AUTH.USER);
   }
 }
 
-export default AuthApi;
+export default new AuthApi();

@@ -4,19 +4,14 @@ import SignUpApi from '../api/auth/signUpApi';
 import LoginApi from '../api/auth/loginApi';
 import Router from '../modules/Router';
 import {setErrorTextForm, setUser} from '../modules/Store/actions';
-import LogoutApi from '../api/auth/logoutApi';
 import {RouterLinks} from '../shared/const';
-
-const authApiInstance = new AuthApi();
-const authSingUpInstance = new SignUpApi();
-const authLoginInstance = new LoginApi();
-const authLogoutInstance = new LogoutApi();
+import LogoutApi from '../api/auth/logoutApi';
 
 class AuthServices {
   public async getUser():Promise<void> {
     try {
-      const user = await authApiInstance.request();
-      setUser(JSON.parse(user));
+      const user = await AuthApi.request();
+      setUser(user);
       Router.enterAuth(true).start();
     } catch (e) {
       Router.enterAuth(false).start();
@@ -24,8 +19,9 @@ class AuthServices {
   }
   public async singUp(payload:SignUpRequest):Promise<void> {
     try {
-      await authSingUpInstance.request(payload);
+      await SignUpApi.request(payload);
       await this.getUser();
+      Router.enterAuth(true).start();
     } catch (e) {
       setErrorTextForm(e.reason);
     }
@@ -33,7 +29,7 @@ class AuthServices {
 
   public async login(payload:LoginRequest): Promise<void> {
     try {
-      await authLoginInstance.request(payload);
+      await LoginApi.request(payload);
       await this.getUser();
     } catch (e) {
       setErrorTextForm(e.reason);
@@ -42,7 +38,7 @@ class AuthServices {
 
   public async logout():Promise<void> {
     try {
-      await authLogoutInstance.request();
+      await LogoutApi.request();
       setUser(null);
       Router.enterAuth(false).start();
       Router.go(RouterLinks.LOGIN);
@@ -52,4 +48,4 @@ class AuthServices {
   }
 }
 
-export default AuthServices;
+export default new AuthServices();

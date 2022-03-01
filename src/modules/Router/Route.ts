@@ -1,5 +1,4 @@
 import Block from '../Block';
-import {isEqual} from '../../utils/isEqual';
 import {render} from '../../utils/renderDom';
 import {TRouteProps} from './types';
 import {ROUTE_ACCESS} from '../../shared/const';
@@ -26,7 +25,7 @@ class Route {
   }
 
   match(pathname:string): boolean {
-    return isEqual(pathname, this._pathname);
+    return pathname === this._pathname;
   }
 
   leave():void {

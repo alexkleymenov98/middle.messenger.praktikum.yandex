@@ -1,7 +1,7 @@
 import Block from '../../../../modules/Block';
 import {MessageProps} from './types';
 import {TRenderElement} from '../../../../modules/Block/types';
-import template from './template';
+import template from './template.pug';
 
 class Message extends Block<MessageProps> {
   constructor(props:MessageProps) {

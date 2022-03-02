@@ -1,6 +1,6 @@
 import Block from '../../../../modules/Block';
 import {TRenderElement} from '../../../../modules/Block/types';
-import template from './template';
+import template from './template.pug';
 import {ChatItemProps} from './types';
 import Router from '../../../../modules/Router';
 import {RouterLinks} from '../../../../shared/const';

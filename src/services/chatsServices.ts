@@ -77,7 +77,7 @@ class ChatsServices {
 
   public async deleteUserFromChat(payload:UserToChatRequest):Promise<void> {
     try {
-      await ChatDataApi.update(payload);
+      await ChatDataApi.delete(payload);
       await this.getChatUsers(payload.chatId);
     } catch (e) {
       console.log(e);

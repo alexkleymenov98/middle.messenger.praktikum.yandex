@@ -11,7 +11,7 @@ import {getActiveChat, openModal} from '../../../../modules/Store/actions';
 import ChatsServices from '../../../../services/chatsServices';
 
 class MessageHeader extends Block<MessageHeaderProps> {
-  constructor(props:MessageHeaderProps) {
+  constructor(props: MessageHeaderProps) {
     super({
       ...props,
       modal: new Modal({
@@ -22,7 +22,7 @@ class MessageHeader extends Block<MessageHeaderProps> {
             inputName: InputName.USER_ID,
             placeholder: '234235',
           }),
-          handlerSubmit: (values:{user_id:string})=>{
+          handlerSubmit: (values: { user_id: string }) => {
             const chat = getActiveChat();
             if (chat && chat.chatId) {
               ChatsServices.addUserToChat({users: [+values.user_id], chatId: chat.chatId});
@@ -40,9 +40,10 @@ class MessageHeader extends Block<MessageHeaderProps> {
       }),
     }, 'div', 'message-container__header');
   }
+
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
+
 export default MessageHeader;

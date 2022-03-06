@@ -5,16 +5,16 @@ import template from './template.pug';
 import Router from '../../modules/Router';
 
 class Link extends Block<LinkProps> {
-  constructor(props:LinkProps) {
+  constructor(props: LinkProps) {
     super({
       events: {
-        click: (event: MouseEvent)=>this.onClick(event),
+        click: (event: MouseEvent) => this.onClick(event),
       },
       ...props,
     });
   }
 
-  onClick(event:MouseEvent):void {
+  onClick(event: MouseEvent): void {
     event.preventDefault();
     Router.go(this.props.path);
   }

@@ -7,7 +7,7 @@ import MessageHeader from '../MessageHeader';
 import MessageList from '../MessageList';
 
 class Content extends Block<ContentProps> {
-  constructor(props:Partial<ContentProps>) {
+  constructor(props: Partial<ContentProps>) {
     super({
       ...props,
       showEmpty: 'hidden',
@@ -17,9 +17,10 @@ class Content extends Block<ContentProps> {
       messageForm: new MessageForm({}),
     }, 'div', 'message-content');
   }
+
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
+
 export default Content;

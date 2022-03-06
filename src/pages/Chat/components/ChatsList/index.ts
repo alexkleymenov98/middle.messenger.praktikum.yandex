@@ -19,7 +19,7 @@ export default connect(
                 {
                   chatId: id,
                   title,
-                  time: last_message?.time ? getTime(last_message.time): '',
+                  time: last_message?.time ? getTime(last_message.time) : '',
                   last_message: last_message?.content ?? '',
                   unread_count: unread_count ? `${unread_count}` : '',
                 },

@@ -11,18 +11,21 @@ import {LoginRequest} from '../../api/auth/types';
 
 
 class Login extends Block<LoginProps> {
-  constructor(props:Partial<LoginProps>) {
-    super({...props,
+  constructor(props: Partial<LoginProps>) {
+    super({
+      ...props,
       title: 'Вход',
       content: new Form({
         submitName: BUTTON_NAME.LOGIN,
-        handlerSubmit: (values)=>{
+        handlerSubmit: (values) => {
           AuthServices.login(values as LoginRequest);
         },
         link:
           new Link(
-              {label: RouterLinksName.REGISTRATION,
-                path: RouterLinks.REGISTRATION}),
+              {
+                label: RouterLinksName.REGISTRATION,
+                path: RouterLinks.REGISTRATION,
+              }),
         login: new Input({
           inputName: InputName.LOGIN,
           labelName: InputLabel.LOGIN,
@@ -32,8 +35,10 @@ class Login extends Block<LoginProps> {
           labelName: InputLabel.PASSWORD,
           type: 'password',
         }),
-      })});
+      }),
+    });
   }
+
   render(): TRenderElement {
     const props = this.props;
     return this.compile(template, props);

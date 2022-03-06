@@ -4,13 +4,13 @@ import {TRenderElement} from '../../../../modules/Block/types';
 import template from './template.pug';
 
 class MessageList extends Block<MessageListProps> {
-  constructor(props:MessageListProps) {
+  constructor(props: MessageListProps) {
     super(props, 'div', 'message-container__list');
   }
 
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
+
 export default MessageList;

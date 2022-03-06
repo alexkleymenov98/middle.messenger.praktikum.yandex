@@ -17,8 +17,9 @@ import {generateWSSParam} from '../utils/generateWSSParam';
 
 
 class ChatsServices {
-  socket:WebSocket | null;
-  public async getChats():Promise<void> {
+  socket: WebSocket | null;
+
+  public async getChats(): Promise<void> {
     try {
       const response = await ChatsApi.request();
       setChats(response);
@@ -26,7 +27,8 @@ class ChatsServices {
       console.error(e);
     }
   }
-  public async createChat(payload:CreateChatRequest):Promise<void> {
+
+  public async createChat(payload: CreateChatRequest): Promise<void> {
     try {
       await ChatsApi.create(payload);
       await this.getChats();
@@ -36,7 +38,7 @@ class ChatsServices {
     }
   }
 
-  public async getChatUsers(payload:number):Promise<void> {
+  public async getChatUsers(payload: number): Promise<void> {
     try {
       const chatInfo = await ChatDataApi.request(payload);
       setUsersToChat(chatInfo);
@@ -45,7 +47,7 @@ class ChatsServices {
     }
   }
 
-  public async getChat(payload:number):Promise<void> {
+  public async getChat(payload: number): Promise<void> {
     try {
       const chatUsers = await ChatDataApi.request(payload);
       const {token} = await ChatDataApi.getToken(payload);
@@ -64,7 +66,7 @@ class ChatsServices {
     }
   }
 
-  public async addUserToChat(payload:UserToChatRequest):Promise<void> {
+  public async addUserToChat(payload: UserToChatRequest): Promise<void> {
     try {
       await ChatDataApi.update(payload);
       setErrorTextForm('');
@@ -75,7 +77,7 @@ class ChatsServices {
     }
   }
 
-  public async deleteUserFromChat(payload:UserToChatRequest):Promise<void> {
+  public async deleteUserFromChat(payload: UserToChatRequest): Promise<void> {
     try {
       await ChatDataApi.delete(payload);
       await this.getChatUsers(payload.chatId);
@@ -84,23 +86,23 @@ class ChatsServices {
     }
   }
 
-  public initSocket(userId:number, chatId: number, token:string): void {
+  public initSocket(userId: number, chatId: number, token: string): void {
     if (!this.socket) {
       this.socket = new WebSocket(
           `${ENDPOINTS.WSS}${ENDPOINTS.CHATS.PATH}/${userId}/${chatId}/${token}`,
       );
     }
-    this.socket.addEventListener('open', ()=>{
+    this.socket.addEventListener('open', () => {
       console.log('Соединение установлено');
       this.socket?.send(generateWSSParam('get old', '0'));
     });
 
-    this.socket.addEventListener('close', ()=>{
+    this.socket.addEventListener('close', () => {
       console.log('Соединение закрыто');
       this.socket = null;
     });
 
-    this.socket.addEventListener('message', async (event)=>{
+    this.socket.addEventListener('message', async (event) => {
       const data = JSON.parse(event.data);
       if (Array.isArray(data)) {
         setMessageList(data);
@@ -125,4 +127,5 @@ class ChatsServices {
     }
   }
 }
+
 export default new ChatsServices();

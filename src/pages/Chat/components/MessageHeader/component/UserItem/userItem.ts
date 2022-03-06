@@ -17,15 +17,14 @@ class UserItem extends Block<Partial<UserItemProps>> {
   onClick({target}: Event): void {
     if (target?.className === 'close') {
       const chat = getActiveChat();
-      if (chat && chat.chatId && this.props.id && this.props.role !== 'admin') {
+      if (chat?.chatId && this.props.id && this.props.role !== 'admin') {
         ChatsServices.deleteUserFromChat({users: [this.props.id], chatId: chat.chatId});
       }
     }
   }
 
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
 

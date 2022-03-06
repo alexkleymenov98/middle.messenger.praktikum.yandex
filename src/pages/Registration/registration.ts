@@ -10,8 +10,9 @@ import AuthServices from '../../services/authServices';
 import {SignUpRequest} from '../../api/auth/types';
 
 class Registration extends Block<RegistrationProps> {
-  constructor(props:Partial<RegistrationProps>) {
-    super({...props,
+  constructor(props: Partial<RegistrationProps>) {
+    super({
+      ...props,
       title: 'Регистрация',
       content: new Form({
         link: new Link({
@@ -19,7 +20,7 @@ class Registration extends Block<RegistrationProps> {
           path: RouterLinks.LOGIN,
         }),
         submitName: BUTTON_NAME.REGISTRATION,
-        handlerSubmit: (values)=>{
+        handlerSubmit: (values) => {
           AuthServices.singUp(values as SignUpRequest);
         },
         [InputName.EMAIL]: new Input({
@@ -52,11 +53,14 @@ class Registration extends Block<RegistrationProps> {
           labelName: InputLabel.CONFIRM,
           type: 'password',
         }),
-      })});
+      }),
+    });
   }
+
   render(): TRenderElement {
     const props = this.props;
     return this.compile(template, props);
   }
 }
+
 export default Registration;

@@ -29,13 +29,13 @@ class Router {
     this._rootQuery = selector;
   }
 
-  enterAuth(value:boolean):Router {
+  enterAuth(value: boolean): Router {
     this.isAuth = value;
     return this;
   }
 
   start(): void {
-    this.window.onpopstate = (event:PopStateEvent) => {
+    this.window.onpopstate = (event: PopStateEvent) => {
       this._onRoute((event.currentTarget as typeof window).location.pathname);
     };
     this._onRoute(this.window.location.pathname);
@@ -58,7 +58,7 @@ class Router {
     route.render();
   }
 
-  use(pathname: string, block: Block, accessRight:TRouteProps['accessRight']): Router {
+  use(pathname: string, block: Block, accessRight: TRouteProps['accessRight']): Router {
     const route = new Route(pathname, block, {rootQuery: this._rootQuery, accessRight});
     this.routes.push(route);
 

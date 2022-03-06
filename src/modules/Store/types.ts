@@ -3,18 +3,18 @@ import {ChatUser} from '../../api/chat/types';
 
 type TActiveChat = {
   chatId: number | null;
-  users:ChatUser[];
-  token:string;
+  users: ChatUser[];
+  token: string;
   messageList: MessageResponse[] | null;
 };
 
 export type TStore = {
   errorTextForm: string;
   user: null | TUserResponse;
-  chats:TChatResponse[];
+  chats: TChatResponse[];
   activeChat: TActiveChat | null;
-  modal:{
+  modal: {
     isShow: boolean;
-    type: 'createChat'| 'addUser'| null;
+    type: 'createChat' | 'addUser' | null;
   }
 }

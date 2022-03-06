@@ -6,16 +6,16 @@ import Router from '../../../../modules/Router';
 import {RouterLinks} from '../../../../shared/const';
 
 class ChatItem extends Block<ChatItemProps> {
-  constructor(props:ChatItemProps) {
+  constructor(props: ChatItemProps) {
     super({
       events: {
-        click: (event) =>this.onClick(event),
+        click: (event) => this.onClick(event),
       },
       ...props,
     });
   }
 
-  onClick(event:Event):void {
+  onClick(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
     Router.go(`${RouterLinks.CHAT}?chatId=${this.props.chatId}`);
@@ -23,8 +23,8 @@ class ChatItem extends Block<ChatItemProps> {
   }
 
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
+
 export default ChatItem;

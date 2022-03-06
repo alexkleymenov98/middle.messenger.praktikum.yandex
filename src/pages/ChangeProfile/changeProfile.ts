@@ -22,7 +22,7 @@ class ChangeProfile extends Block<ChangeProfileProps> {
       title: 'Изменить профиль',
       content: new Form({
         submitName: BUTTON_NAME.SAVE,
-        handlerSubmit: (values: ChangeUserRequest)=>{
+        handlerSubmit: (values: ChangeUserRequest) => {
           UserServices.updateUser(values);
         },
         link: new Link({

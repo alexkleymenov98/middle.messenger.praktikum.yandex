@@ -4,7 +4,7 @@ type TPassword = {
   password: string;
 }
 
-export type SignUpRequest =
+export type SignUpRequestData =
   Pick<TUserResponse, 'first_name' | 'second_name' | 'login' | 'phone' | 'email'>
   & TPassword;
-export type LoginRequest = Pick<TUserResponse, 'login'> & TPassword;
+export type LoginRequestData = Pick<TUserResponse, 'login'> & TPassword;

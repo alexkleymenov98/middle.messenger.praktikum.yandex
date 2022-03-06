@@ -4,12 +4,13 @@ import {TRouteProps} from './types';
 import {ROUTE_ACCESS} from '../../shared/const';
 
 class Route {
-  _pathname:string;
-  _blockClass:any;
-  _block:any;
+  _pathname: string;
+  _blockClass: any;
+  _block: any;
   _props;
-  accessRight:ROUTE_ACCESS;
-  constructor(pathname:string, view:Block, props:TRouteProps) {
+  accessRight: ROUTE_ACCESS;
+
+  constructor(pathname: string, view: Block, props: TRouteProps) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;
@@ -17,24 +18,24 @@ class Route {
     this.accessRight = props.accessRight;
   }
 
-  navigate(pathname:string):void {
+  navigate(pathname: string): void {
     if (this.match(pathname)) {
       this._pathname = pathname;
       this.render();
     }
   }
 
-  match(pathname:string): boolean {
+  match(pathname: string): boolean {
     return pathname === this._pathname;
   }
 
-  leave():void {
+  leave(): void {
     if (this._block) {
       this._block.hide();
     }
   }
 
-  render():void {
+  render(): void {
     if (!this._block) {
       this._block = new this._blockClass();
     }

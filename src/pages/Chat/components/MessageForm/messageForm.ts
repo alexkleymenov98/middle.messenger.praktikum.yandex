@@ -7,8 +7,7 @@ import validator from '../../../../modules/Validate';
 import ChatsServices from '../../../../services/chatsServices';
 
 class MessageForm extends Block<MessageFormProps> {
-  socket:WebSocket;
-  constructor(props:Partial<MessageFormProps>) {
+  constructor(props: Partial<MessageFormProps>) {
     super({
       inputName: InputName.MESSAGE,
       ...props,
@@ -18,12 +17,12 @@ class MessageForm extends Block<MessageFormProps> {
     }, 'div', 'message-container__form');
   }
 
-  onValid(name:InputName, value:FormDataEntryValue | null):boolean {
+  onValid(name: InputName, value: FormDataEntryValue | null): boolean {
     if (typeof value !== 'string') return false;
     return validator[name](value).isValid;
   }
 
-  onSubmit(event:Event):void {
+  onSubmit(event: Event): void {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
     const form = {
@@ -42,4 +41,5 @@ class MessageForm extends Block<MessageFormProps> {
     return this.compile(template, {placeholder, ...props});
   }
 }
+
 export default MessageForm;

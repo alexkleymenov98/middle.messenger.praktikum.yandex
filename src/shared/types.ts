@@ -1,6 +1,6 @@
 import Form from '../components/Form';
 
-export type Success = 'ОК';
+export type SuccessResponse = 'ОК';
 
 export type TID = {
   id: number;

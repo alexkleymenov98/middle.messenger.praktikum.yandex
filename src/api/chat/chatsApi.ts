@@ -1,23 +1,23 @@
-import HTTP, {BaseApi} from '../../modules/HTTPTransport';
+import {BaseApi} from '../../modules/HTTPTransport';
 import {ENDPOINTS} from '../consts';
 import {ChatID, CreateChatRequest} from './types';
-import {Success, TChatResponse} from '../../shared/types';
-
-const chatsApiInstance = new HTTP(ENDPOINTS.CHATS.PATH);
+import {SuccessResponse, TChatResponse} from '../../shared/types';
 
 class ChatsApi extends BaseApi {
-  public request():Promise<TChatResponse[]> {
-    return chatsApiInstance.get<TChatResponse[]>('');
+  constructor() {
+    super(ENDPOINTS.CHATS.PATH);
+  }
+  public request(): Promise<TChatResponse[]> {
+    return this.http.get<TChatResponse[]>('');
   }
 
-  public create(data: CreateChatRequest):Promise<Success> {
-    return chatsApiInstance.post('', {data});
+  public create(data: CreateChatRequest): Promise<SuccessResponse> {
+    return this.http.post('', {data});
   }
 
-  public delete(data:ChatID):Promise<Success> {
-    return chatsApiInstance.delete<Success>('', {data});
+  public delete(data:ChatID): Promise<SuccessResponse> {
+    return this.http.delete<SuccessResponse>('', {data});
   }
 }
-
 
 export default new ChatsApi();

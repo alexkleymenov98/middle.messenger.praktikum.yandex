@@ -6,9 +6,11 @@ import {hideModal} from '../../modules/Store/actions';
 
 class Modal extends Block<ModalProps> {
   constructor(props: ModalProps) {
-    super({events: {
-      click: (event) => this.onClickBackground(event),
-    }, ...props}
+    super({
+      events: {
+        click: (event) => this.onClickBackground(event),
+      }, ...props,
+    }
     , 'div', 'modal-wrapper');
   }
 
@@ -24,15 +26,14 @@ class Modal extends Block<ModalProps> {
 
 
   onClickBackground({target}: Event): void {
-    if (target && target?.className === 'modal-wrapper') {
+    if (target?.className === 'modal-wrapper') {
       hideModal();
     }
   }
 
 
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
 

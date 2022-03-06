@@ -6,7 +6,7 @@ import makeUUID from '../../utils/makeUUID';
 export type TBlock = typeof Block;
 
 export default abstract class Block<T extends object = BlockProps> {
-  private static EVENTS:Record<componentCycleKey, componentCycleValue> = {
+  private static EVENTS: Record<componentCycleKey, componentCycleValue> = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
@@ -22,8 +22,7 @@ export default abstract class Block<T extends object = BlockProps> {
   eventBus: EventBus;
 
   private _id: string;
-  private _children:BlockEntryProps['children'] ={
-  };
+  private _children: BlockEntryProps['children'] = {};
 
   constructor(propsAndChildren: T, tagName = 'div', className = '') {
     const {children, props} = this._getChildren(propsAndChildren);
@@ -59,12 +58,12 @@ export default abstract class Block<T extends object = BlockProps> {
     this._element = this._createDocumentElement(tagName as string);
   }
 
-  init():void {
+  init(): void {
     this._createResources();
     this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  private _componentDidMount():void {
+  private _componentDidMount(): void {
     this.componentDidMount();
     Object.values(this.getChildren()).forEach((child) => {
       if (Array.isArray(child)) {
@@ -77,13 +76,14 @@ export default abstract class Block<T extends object = BlockProps> {
     });
   }
 
-  componentDidMount():void {
+  componentDidMount(): void {
     return;
   }
 
-  dispatchComponentDidMount():void {
+  dispatchComponentDidMount(): void {
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
+
   componentDidUpdate(): void {
   }
 
@@ -99,9 +99,9 @@ export default abstract class Block<T extends object = BlockProps> {
     }
   }
 
-  _getChildren(propsAndChildren:T):BlockEntryProps {
-    const children:BlockEntryProps['children'] = {};
-    const props:BlockEntryProps['props'] = {};
+  _getChildren(propsAndChildren: T): BlockEntryProps {
+    const children: BlockEntryProps['children'] = {};
+    const props: BlockEntryProps['props'] = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block || Array.isArray(value)) {
@@ -113,12 +113,12 @@ export default abstract class Block<T extends object = BlockProps> {
     return {children, props};
   }
 
-  getChildren():BlockEntryProps['children'] {
+  getChildren(): BlockEntryProps['children'] {
     return this._children;
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  _compileTemplate(template:string, props:any): string {
+  _compileTemplate(template: string, props: any): string {
     const regexp = /{{(.*?)}}/g;
     const matches = template.match(regexp);
 
@@ -133,12 +133,12 @@ export default abstract class Block<T extends object = BlockProps> {
       ).join('') : template;
   }
 
-  compile(template:string, props:T):DocumentFragment {
-    const propsAndStubs:T = {...props};
+  compile(template: string, props: T): DocumentFragment {
+    const propsAndStubs: T = {...props};
 
     Object.entries(this.getChildren()).forEach(([key, child]) => {
       if (Array.isArray(child)) {
-        child.forEach((innerChild:any) => {
+        child.forEach((innerChild: any) => {
           if (!propsAndStubs[key]) {
             propsAndStubs[key] = [];
           }
@@ -173,7 +173,7 @@ export default abstract class Block<T extends object = BlockProps> {
     return fragment.content;
   }
 
-  setProps = (nextProps: T):void => {
+  setProps = (nextProps: T): void => {
     if (!nextProps) {
       return;
     }
@@ -188,11 +188,11 @@ export default abstract class Block<T extends object = BlockProps> {
     }
   };
 
-  get element():HTMLElement {
+  get element(): HTMLElement {
     return this._element as HTMLElement;
   }
 
-  private _render():void {
+  private _render(): void {
     const block = this.render(); // render теперь возвращает DocumentFragment
 
     this._removeEvents();
@@ -210,13 +210,13 @@ export default abstract class Block<T extends object = BlockProps> {
     return this._element as TRenderElement;
   }
 
-  getContent():HTMLElement {
+  getContent(): HTMLElement {
     return this.element as HTMLElement;
   }
 
   private _makePropsProxy(props: T) {
     return new Proxy(props, {
-      get(target, prop:string) {
+      get(target, prop: string) {
         // @ts-ignore
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
@@ -244,22 +244,22 @@ export default abstract class Block<T extends object = BlockProps> {
     return element;
   }
 
-  show():void {
+  show(): void {
     this.getContent().style.display = 'block';
   }
 
-  hide():void {
+  hide(): void {
     this.getContent().style.display = 'none';
   }
 
   private _addEvents(): void {
     const {events = {}} = this.props;
-    Object.keys(events).forEach((eventName:keyof GlobalEventHandlersEventMap) => {
+    Object.keys(events).forEach((eventName: keyof GlobalEventHandlersEventMap) => {
       this._element?.addEventListener(eventName, events[eventName] as (e: Event) => void);
     });
   }
 
-  private _removeEvents():void {
+  private _removeEvents(): void {
     const {events = {}} = this.props;
 
     Object.keys(events).forEach((eventName: keyof GlobalEventHandlersEventMap) => {
@@ -267,7 +267,7 @@ export default abstract class Block<T extends object = BlockProps> {
     });
   }
 
-  getId():string {
+  getId(): string {
     return this._id;
   }
 }

@@ -4,6 +4,6 @@ import {ComponentEvents} from '../../shared/types';
 
 export type ModalProps = {
   events?: ComponentEvents;
-  typeModal:TStore['modal']['type'];
+  typeModal: TStore['modal']['type'];
   content: Form;
 } & TStore['modal'];

@@ -1,12 +1,13 @@
-import HTTP, {BaseApi} from '../../modules/HTTPTransport';
+import {BaseApi} from '../../modules/HTTPTransport';
 import {ENDPOINTS} from '../consts';
-import {Success} from '../../shared/types';
-
-const authApiInstance = new HTTP(ENDPOINTS.AUTH.PATH);
+import {SuccessResponse} from '../../shared/types';
 
 class LogoutApi extends BaseApi {
-  public request():Promise<Success> {
-    return authApiInstance.post<Success>(ENDPOINTS.AUTH.LOGOUT, );
+  constructor() {
+    super(ENDPOINTS.AUTH.PATH);
+  }
+  public request(): Promise<SuccessResponse> {
+    return this.http.post<SuccessResponse>(ENDPOINTS.AUTH.LOGOUT);
   }
 }
 export default new LogoutApi();

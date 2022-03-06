@@ -15,7 +15,7 @@ import Button from '../../components/Button/button';
 import {openModal} from '../../modules/Store/actions';
 
 class Chat extends Block<ChatProps> {
-  constructor(props:Partial<ChatProps>) {
+  constructor(props: Partial<ChatProps>) {
     super({
       ...props,
       modal: new Modal({
@@ -26,7 +26,7 @@ class Chat extends Block<ChatProps> {
             inputName: InputName.TITLE,
             placeholder: 'Новый чат',
           }),
-          handlerSubmit: (values)=>{
+          handlerSubmit: (values) => {
             ChatsServices.createChat(values as CreateChatRequest);
           },
           link: null,
@@ -38,9 +38,10 @@ class Chat extends Block<ChatProps> {
         label: RouterLinksName.PROFILE,
       }),
       actions: new Button(
-          {label: 'Создать чат',
+          {
+            label: 'Создать чат',
             events: {
-              click: () =>openModal('createChat'),
+              click: () => openModal('createChat'),
             },
           },
       ),

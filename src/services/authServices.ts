@@ -8,7 +8,7 @@ import {RouterLinks} from '../shared/const';
 import LogoutApi from '../api/auth/logoutApi';
 
 class AuthServices {
-  public async getUser():Promise<void> {
+  public async getUser(): Promise<void> {
     try {
       const user = await AuthApi.request();
       setUser(user);
@@ -17,7 +17,8 @@ class AuthServices {
       Router.enterAuth(false).start();
     }
   }
-  public async singUp(payload:SignUpRequest):Promise<void> {
+
+  public async singUp(payload: SignUpRequest): Promise<void> {
     try {
       await SignUpApi.request(payload);
       await this.getUser();
@@ -27,7 +28,7 @@ class AuthServices {
     }
   }
 
-  public async login(payload:LoginRequest): Promise<void> {
+  public async login(payload: LoginRequest): Promise<void> {
     try {
       await LoginApi.request(payload);
       await this.getUser();
@@ -36,7 +37,7 @@ class AuthServices {
     }
   }
 
-  public async logout():Promise<void> {
+  public async logout(): Promise<void> {
     try {
       await LogoutApi.request();
       setUser(null);

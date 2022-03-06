@@ -4,7 +4,7 @@ import {
   loginValidate,
   nameValidate,
   passwordValidate,
-  phoneValidate,
+  phoneValidate, userIDValidate,
 } from './validate';
 import {TValidate} from './types';
 import {InputName} from '../../shared/const';
@@ -21,6 +21,8 @@ const validator:TValidate = {
   [InputName.NEW_PASSWORD]: passwordValidate,
   [InputName.OLD_PASSWORD]: passwordValidate,
   [InputName.MESSAGE]: emptyValidate,
+  [InputName.TITLE]: emptyValidate,
+  [InputName.USER_ID]: userIDValidate,
 };
 
 export default validator;

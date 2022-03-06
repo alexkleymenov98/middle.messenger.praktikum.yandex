@@ -5,11 +5,11 @@ export enum METHODS {
   DELETE = 'DELETE',
 }
 
-export type Options = {
+export type Options<T = any> = {
   headers?: Record<string, string>;
   method: METHODS;
   timeout?: number;
-  data?: any;
+  data?: T;
 };
 
 export type OptionsWithoutMethod = Omit<Options, 'method'>;

@@ -1,7 +1,9 @@
 ul.profile-links
     li
-        a(href="{{linkChangeProfile}}", class="profile-link")="{{labelLinkChangeProfile}}"
+        | {{linkChangeMessages}}
     li
-        a(href="{{linkChangePassword}}", class="profile-link")="{{labelLinkChangePassword}}"
+        | {{linkChangeProfile}}
     li
-        a(href="{{linkExit}}", class="profile-link profile-link-exit")="{{labelLinkExit}}"
+        | {{linkChangePassword}}
+    li
+        | {{linkExit}}

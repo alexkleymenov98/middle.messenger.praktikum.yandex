@@ -1,18 +1,11 @@
-export enum pagesHash {
-  changePassword = '#changePassword',
-  changeProfile = '#changeProfile',
-  login = '#login',
-  registration = '#registration',
-  profile = '#profile',
-}
-
 export enum RouterLinks {
-  LOGIN = '/#login',
-  REGISTRATION = '/#registration',
-  CHAT = '/',
-  PROFILE = '/#profile',
-  CHANGE_PROFILE = '/#changeProfile',
-  CHANGE_PASSWORD = '/#changePassword',
+  LOGIN = '/',
+  REGISTRATION = '/sign-up',
+  CHAT = '/messenger',
+  PROFILE = '/settings',
+  CHANGE_PROFILE = '/settings/change-profile',
+  CHANGE_PASSWORD = '/settings/change-password',
+  ERROR_404 = '/404',
 }
 export enum RouterLinksName {
   LOGIN = 'Войти',
@@ -36,6 +29,8 @@ export enum InputName {
   OLD_PASSWORD = 'oldPassword',
   NEW_PASSWORD = 'newPassword',
   MESSAGE = 'message',
+  TITLE = 'title',
+  USER_ID = 'user_id'
 }
 export enum InputLabel {
   LOGIN = 'Логин',
@@ -49,10 +44,18 @@ export enum InputLabel {
   DISPLAY_NAME = 'Имя в чате',
   OLD_PASSWORD = 'Старый пароль',
   NEW_PASSWORD = 'Новый пароль',
+  CHAT_NAME = 'Название чата',
+  USER_ID = 'ID пользователя',
 }
 
 export enum BUTTON_NAME {
   LOGIN = 'Войти',
   REGISTRATION = 'Создать аккаунт',
   SAVE = 'Сохранить',
+}
+
+export enum ROUTE_ACCESS {
+  PUBLIC = 'public',
+  PRIVATE = 'private',
+  ERROR = 'error',
 }

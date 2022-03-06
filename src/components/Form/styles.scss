@@ -23,6 +23,9 @@
       .input-field {
         margin-bottom: 1.6rem;
       }
+      .error-text {
+        color: $errorColor;
+      }
     }
     &__buttons {
       display: flex;

@@ -5,6 +5,7 @@
 @import "../components/Input/styles";
 @import "../pages/Profile/styles";
 @import "../pages/Chat/styles";
+@import "../components/modal/styles";
 html {
   font-size: 10px;
 }
@@ -15,6 +16,14 @@ body {
   font-size: 1.3rem;
   color: #1e1e1e;
   font-family: Inter, sans-serif;
+}
+button {
+  background: $buttonBg;
+  color: $buttonColor;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
 }
 a {
   text-decoration: none;
@@ -38,8 +47,19 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    img {
+      object-fit: cover;
+      max-width: 100%;
+    }
+    input {
+      display: none;
+    }
   }
 }
 .show {
   display: block;
+}
+.hidden {
+  display: none !important;
 }

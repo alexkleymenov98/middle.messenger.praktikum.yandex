@@ -1,4 +1,6 @@
-.message-container
+.message-container(class="{{showMessage}}")
     | {{messageHeader}}
     | {{messageList}}
     | {{messageForm}}
+.empty(class="{{showEmpty}}")
+    p Выберите чат чтобы отправить сообщение

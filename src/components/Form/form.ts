@@ -6,7 +6,7 @@ import {InputName} from '../../shared/const';
 import Input from '../Input';
 
 class Form extends Block<FormProps> {
-  constructor(props:FormProps) {
+  constructor(props: FormProps) {
     super({
       [InputName.EMAIL]: null,
       [InputName.LOGIN]: null,
@@ -18,6 +18,8 @@ class Form extends Block<FormProps> {
       [InputName.OLD_PASSWORD]: null,
       [InputName.NEW_PASSWORD]: null,
       [InputName.CONFIRM]: null,
+      [InputName.TITLE]: null,
+      [InputName.USER_ID]: null,
       ...props,
       events: {
         submit: (event: Event) => this.onSubmit(event),
@@ -27,9 +29,9 @@ class Form extends Block<FormProps> {
 
   isValid(): boolean {
     let compareValue = '';
-    const passwords:InputName[] = [InputName.NEW_PASSWORD, InputName.PASSWORD];
+    const passwords: InputName[] = [InputName.NEW_PASSWORD, InputName.PASSWORD];
     const children = this.getChildren() as InputsForm;
-    Object.values(children).forEach((input)=>{
+    Object.values(children).forEach((input) => {
       if (input && input instanceof Input) {
         if (input.props.inputName === 'confirm') {
           input.onValidate(input.props.inputName, input.props.inputValue as string, compareValue);
@@ -41,17 +43,19 @@ class Form extends Block<FormProps> {
         }
       }
     });
+
     return Object.values(children)
-        .every((input)=>input && input instanceof Input && input.props.isValid);
+        .filter((child) => child instanceof Input)
+        .every((input) => input && input.props.isValid);
   }
 
   onSubmit(event: Event): void {
     event.preventDefault();
     if (this.isValid()) {
       const formData = new FormData(event.target as HTMLFormElement);
-      const data:Record<string, string> = {};
+      const data: Record<string, string> = {};
       const children = this.getChildren() as InputsForm;
-      Object.values(children).forEach((input)=>{
+      Object.values(children).forEach((input) => {
         if (input) {
           const inputName = input.props.inputName as FormDataEntryValue | null;
           if (inputName && typeof inputName === 'string') {
@@ -59,13 +63,19 @@ class Form extends Block<FormProps> {
           }
         }
       });
-      console.log(data);
+      if (this.props.handlerSubmit) {
+        if ('confirm' in data) {
+          delete data.confirm;
+        }
+        this.props.handlerSubmit(data);
+      }
     }
   }
 
   render(): TRenderElement {
-    const {submitName = 'Отправить', ...rest} = this.props;
-    return this.compile(template, {submitName, ...rest});
+    const {submitName = 'Отправить', errorTextForm = '', ...rest} = this.props;
+    return this.compile(template, {submitName, errorTextForm, ...rest});
   }
 }
+
 export default Form;

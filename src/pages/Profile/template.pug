@@ -1,25 +1,23 @@
 .profile
-    .profile__avatar
-        .avatar.avatar-default
-            img(src=avatar)
-    h1.profile__title="{{name}}"
+    | {{avatarBlock}}
+    h1.profile__title="{{first_name}} {{second_name}} #{{id}}"
     ul.profile-info
         li.profile-info__row
             span.label Почта
-            span.value pochta@yandex.ru
+            span.value {{email}}
         li.profile-info__row
             span.label Логин
-            span.value ivanivanov
+            span.value {{login}}
         li.profile-info__row
             span.label Имя
-            span.value Иван
+            span.value {{first_name}}
         li.profile-info__row
             span.label Фамилия
-            span.value Иванов
+            span.value {{second_name}}
         li.profile-info__row
             span.label Имя в чате
-            span.value Иван
+            span.value {{display_name}}
         li.profile-info__row
             span.label Телефон
-            span.value +7 (909) 967 30 30
+            span.value {{phone}}
     | {{navigation}}

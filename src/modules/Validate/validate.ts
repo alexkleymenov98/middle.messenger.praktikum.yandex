@@ -133,3 +133,22 @@ export const emailValidate:TFValidate = (value) => {
   };
 };
 
+export const userIDValidate:TFValidate = (value)=>{
+  if (!emptyValidate(value).isValid) {
+    return emptyValidate(value);
+  }
+
+  const regExp = /^([0-9]*)$/;
+  if (!regExp.test(value)) {
+    return {
+      isValid: false,
+      errorText: 'Только цифры',
+    };
+  }
+
+  return {
+    isValid: true,
+    errorText: '',
+  };
+};
+

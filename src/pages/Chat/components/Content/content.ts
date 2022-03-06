@@ -3,25 +3,24 @@ import {ContentProps} from './types';
 import template from './template.pug';
 import {TRenderElement} from '../../../../modules/Block/types';
 import MessageForm from '../MessageForm';
-import MessageHeader from '../MessageHeader/messageHeader';
+import MessageHeader from '../MessageHeader';
 import MessageList from '../MessageList';
 
 class Content extends Block<ContentProps> {
-  constructor(props:Partial<ContentProps>) {
+  constructor(props: Partial<ContentProps>) {
     super({
-      isEmpty: false,
-      messageHeader: new MessageHeader({
-        name: 'Вадим',
-        avatarSrc: '',
-      }),
+      ...props,
+      showEmpty: 'hidden',
+      showMessage: 'hidden',
+      messageHeader: new MessageHeader({}),
       messageList: new MessageList({}),
       messageForm: new MessageForm({}),
-      ...props,
     }, 'div', 'message-content');
   }
+
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
+
 export default Content;

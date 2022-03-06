@@ -1,3 +1,4 @@
+import {connect} from '../../modules/Store/connect';
 import ChangeProfile from './changeProfile';
 
-export default ChangeProfile;
+export default connect(ChangeProfile, ({user}) => user);

@@ -1,8 +1,8 @@
+import Link from '../../../../components/Link';
+
 export type NavigationProps = {
-  linkChangeProfile?:string;
-  labelLinkChangeProfile?:string;
-  linkChangePassword?:string;
-  labelLinkChangePassword?:string;
-  linkExit?:string;
-  labelLinkExit?:string;
+  linkChangeMessages: Link,
+  linkChangeProfile: Link;
+  linkChangePassword: Link;
+  linkExit: Link;
 }

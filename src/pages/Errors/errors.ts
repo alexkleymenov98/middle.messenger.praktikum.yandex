@@ -4,12 +4,12 @@ import template from './template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 
 class Errors extends Block<ErrorPageProps> {
-  constructor(props:ErrorPageProps) {
+  constructor(props: ErrorPageProps) {
     super(props);
   }
+
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
 

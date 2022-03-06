@@ -11,6 +11,10 @@ form
             | {{oldPassword}}
             | {{newPassword}}
             | {{confirm}}
+            | {{title}}
+            | {{user_id}}
+            .error-text
+                span="{{errorTextForm}}"
         .form-container__buttons
             input(type="submit", value="{{submitName}}", class="input-field-submit")
-            a(href="{{linkPath}}") {{linkName}}
+            | {{link}}

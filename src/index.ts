@@ -1,6 +1,5 @@
-import Login from './pages/Login';
+import Login from './pages/Login/login';
 import Chat from './pages/Chat';
-import Registration from './pages/Registration';
 import Profile from './pages/Profile';
 import Router from './modules/Router';
 import {RouterLinks} from './shared/const';
@@ -9,6 +8,8 @@ import ChangePassword from './pages/ChangePassword';
 import AuthServices from './services/authServices';
 import {getUser} from './modules/Store/actions';
 import {Error404} from './pages/Errors';
+import Registration from './pages/Registration';
+import './styles/index.scss';
 
 AuthServices.getUser().then(() => {
   const isAuth = !!getUser();

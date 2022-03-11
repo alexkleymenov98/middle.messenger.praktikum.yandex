@@ -1,5 +1,6 @@
 import Block from '../../modules/Block';
 import {ChatProps} from './types';
+// @ts-ignore
 import template from './template.pug';
 import Content from './components/Content';
 import {TRenderElement} from '../../modules/Block/types';

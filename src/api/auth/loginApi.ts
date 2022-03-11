@@ -7,7 +7,7 @@ class LoginApi extends BaseApi {
   constructor() {
     super(ENDPOINTS.AUTH.PATH);
   }
-  public request(data: LoginRequestData): Promise<SuccessResponse> {
+  request(data: LoginRequestData): Promise<SuccessResponse> {
     return this.http.post<SuccessResponse>(ENDPOINTS.AUTH.SIGNIN, {data});
   }
 }

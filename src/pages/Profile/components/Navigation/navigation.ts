@@ -1,10 +1,10 @@
 import Block from '../../../../modules/Block';
 import {TRenderElement} from '../../../../modules/Block/types';
-import template from './template.pug';
 import {NavigationProps} from './types';
 import Link from '../../../../components/Link';
 import {RouterLinks, RouterLinksName} from '../../../../shared/const';
 import AuthServices from '../../../../services/authServices';
+const template = require('./template.pug');
 
 class Navigation extends Block<NavigationProps> {
   constructor(props: Partial<NavigationProps>) {

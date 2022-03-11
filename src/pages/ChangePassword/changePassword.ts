@@ -3,6 +3,7 @@ import {ChangePasswordProps} from './types';
 import Form from '../../components/Form';
 import {BUTTON_NAME, InputLabel, InputName, RouterLinks, RouterLinksName} from '../../shared/const';
 import Input from '../../components/Input';
+// @ts-ignore
 import template from '../../layouts/Page/template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import Link from '../../components/Link';

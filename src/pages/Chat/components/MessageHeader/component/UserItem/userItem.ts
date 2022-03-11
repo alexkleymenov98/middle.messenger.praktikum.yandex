@@ -1,4 +1,5 @@
 import Block from '../../../../../../modules/Block';
+// @ts-ignore
 import template from './template.pug';
 import {TRenderElement} from '../../../../../../modules/Block/types';
 import {UserItemProps} from './types';
@@ -9,12 +10,13 @@ class UserItem extends Block<Partial<UserItemProps>> {
   constructor(props: Partial<UserItemProps>) {
     super({
       ...props, events: {
-        click: (event) => this.onClick(event),
+        click: (event: Event) => this.onClick(event),
       },
     });
   }
 
   onClick({target}: Event): void {
+    // @ts-ignore
     if (target?.className === 'close') {
       const chat = getActiveChat();
       if (chat?.chatId && this.props.id && this.props.role !== 'admin') {

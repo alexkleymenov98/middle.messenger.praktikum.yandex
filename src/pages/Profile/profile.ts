@@ -1,5 +1,6 @@
 import Block from '../../modules/Block';
 import {ProfileProps} from './types';
+// @ts-ignore
 import template from './template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import Navigation from './components/Navigation';

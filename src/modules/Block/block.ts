@@ -3,9 +3,7 @@ import {BlockEntryProps, BlockProps, TRenderElement} from './types';
 import {componentCycleKey, componentCycleValue} from '../EventBus/types';
 import makeUUID from '../../utils/makeUUID';
 
-export type TBlock = typeof Block;
-
-export default abstract class Block<T extends object = BlockProps> {
+export default abstract class Block<T extends BlockProps = BlockProps> {
   private static EVENTS: Record<componentCycleKey, componentCycleValue> = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -140,6 +138,7 @@ export default abstract class Block<T extends object = BlockProps> {
       if (Array.isArray(child)) {
         child.forEach((innerChild: any) => {
           if (!propsAndStubs[key]) {
+            // @ts-ignore
             propsAndStubs[key] = [];
           }
           propsAndStubs[key].push(

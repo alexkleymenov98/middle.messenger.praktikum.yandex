@@ -1,5 +1,6 @@
 import Block from '../../../../modules/Block';
 import {TRenderElement} from '../../../../modules/Block/types';
+// @ts-ignore
 import template from './template.pug';
 import {ChatItemProps} from './types';
 import Router from '../../../../modules/Router';

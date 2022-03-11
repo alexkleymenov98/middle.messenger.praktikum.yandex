@@ -1,5 +1,6 @@
 import Block from '../../modules/Block';
 import {InputProps} from './types';
+// @ts-ignore
 import template from './template.pug';
 import {TValidateResult} from '../../modules/Validate/types';
 import {InputName} from '../../shared/const';

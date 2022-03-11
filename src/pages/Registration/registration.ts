@@ -1,13 +1,14 @@
 import Block from '../../modules/Block';
 import {RegistrationProps} from './types';
-import Form from '../../components/Form';
+import Form from '../../components/Form/form';
 import {BUTTON_NAME, InputLabel, InputName, RouterLinks, RouterLinksName} from '../../shared/const';
 import Input from '../../components/Input';
+// @ts-ignore
 import template from '../../layouts/Page/template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import Link from '../../components/Link';
 import AuthServices from '../../services/authServices';
-import {SignUpRequest} from '../../api/auth/types';
+import {SignUpRequestData} from '../../api/auth/types';
 
 class Registration extends Block<RegistrationProps> {
   constructor(props: Partial<RegistrationProps>) {
@@ -20,8 +21,8 @@ class Registration extends Block<RegistrationProps> {
           path: RouterLinks.LOGIN,
         }),
         submitName: BUTTON_NAME.REGISTRATION,
-        handlerSubmit: (values) => {
-          AuthServices.singUp(values as SignUpRequest);
+        handlerSubmit: (values: SignUpRequestData) => {
+          AuthServices.singUp(values as SignUpRequestData);
         },
         [InputName.EMAIL]: new Input({
           inputName: InputName.EMAIL,
@@ -58,8 +59,7 @@ class Registration extends Block<RegistrationProps> {
   }
 
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
 

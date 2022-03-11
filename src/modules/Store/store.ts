@@ -4,12 +4,6 @@ import {StoreEvents} from './enums';
 import {TStore} from './types';
 
 class Store extends EventBus<StoreEvents> {
-  constructor() {
-    super();
-    this.on(StoreEvents.Updated, () => {
-    });
-  }
-
   private state: TStore = {
     chats: [],
     errorTextForm: '',
@@ -31,4 +25,4 @@ class Store extends EventBus<StoreEvents> {
   }
 }
 
-export default new Store();
+export default Store;

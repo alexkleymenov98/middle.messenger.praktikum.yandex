@@ -1,6 +1,7 @@
 import Block from '../../../../modules/Block';
 import {MessageFormProps} from './types';
 import {TRenderElement} from '../../../../modules/Block/types';
+// @ts-ignore
 import template from './template.pug';
 import {InputName} from '../../../../shared/const';
 import validator from '../../../../modules/Validate';

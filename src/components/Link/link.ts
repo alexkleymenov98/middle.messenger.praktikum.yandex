@@ -1,6 +1,7 @@
 import Block from '../../modules/Block';
 import {TRenderElement} from '../../modules/Block/types';
 import {LinkProps} from './types';
+// @ts-ignore
 import template from './template.pug';
 import Router from '../../modules/Router';
 

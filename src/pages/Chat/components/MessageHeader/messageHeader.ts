@@ -1,6 +1,7 @@
 import Block from '../../../../modules/Block';
 import {MessageHeaderProps} from './types';
 import {TRenderElement} from '../../../../modules/Block/types';
+// @ts-ignore
 import template from './template.pug';
 import Modal from '../../../../components/modal';
 import Form from '../../../../components/Form/form';
@@ -10,8 +11,8 @@ import Button from '../../../../components/Button';
 import {getActiveChat, openModal} from '../../../../modules/Store/actions';
 import ChatsServices from '../../../../services/chatsServices';
 
-class MessageHeader extends Block<MessageHeaderProps> {
-  constructor(props: MessageHeaderProps) {
+class MessageHeader extends Block {
+  constructor(props: Partial<MessageHeaderProps>) {
     super({
       ...props,
       modal: new Modal({

@@ -2,15 +2,16 @@ import Block from '../Block';
 import {render} from '../../utils/renderDom';
 import {TRouteProps} from './types';
 import {ROUTE_ACCESS} from '../../shared/const';
+import {TBlockConnect} from '../../shared/types';
 
 class Route {
   _pathname: string;
-  _blockClass: any;
-  _block: any;
+  _blockClass: TBlockConnect;
+  _block: Block | null;
   _props;
   accessRight: ROUTE_ACCESS;
 
-  constructor(pathname: string, view: Block, props: TRouteProps) {
+  constructor(pathname: string, view: TBlockConnect, props: TRouteProps) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;

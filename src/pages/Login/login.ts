@@ -3,22 +3,23 @@ import Block from '../../modules/Block';
 import {LoginProps} from './types';
 import {BUTTON_NAME, InputLabel, InputName, RouterLinks, RouterLinksName} from '../../shared/const';
 import Input from '../../components/Input';
+// @ts-ignore
 import template from '../../layouts/Page/template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import Link from '../../components/Link';
 import AuthServices from '../../services/authServices';
-import {LoginRequest} from '../../api/auth/types';
+import {LoginRequestData} from '../../api/auth/types';
 
 
 class Login extends Block<LoginProps> {
-  constructor(props: Partial<LoginProps>) {
+  constructor(props: LoginProps) {
     super({
       ...props,
       title: 'Вход',
       content: new Form({
         submitName: BUTTON_NAME.LOGIN,
-        handlerSubmit: (values) => {
-          AuthServices.login(values as LoginRequest);
+        handlerSubmit: (values: LoginRequestData) => {
+          AuthServices.login(values as LoginRequestData);
         },
         link:
           new Link(
@@ -40,9 +41,7 @@ class Login extends Block<LoginProps> {
   }
 
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
-
 export default Login;

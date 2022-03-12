@@ -4,6 +4,7 @@ import {BlockProps} from '../Block/types';
 import {TStore} from './types';
 import {Indexed, TBlockConnect} from '../../shared/types';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function connect(Component: TBlockConnect, mapStateToProps: (state: TStore) => Indexed) {
   return class extends Component {
     constructor(props: BlockProps) {

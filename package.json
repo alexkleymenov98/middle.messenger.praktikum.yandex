@@ -23,6 +23,11 @@
   "bugs": {
     "url": "https://github.com/alexkleymenov98/middle.messenger.praktikum.yandex/issues"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint && stylelintFixed && test"
+    }
+  },
   "homepage": "https://github.com/alexkleymenov98/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
     "@babel/core": "7.17.5",
@@ -48,6 +53,7 @@
     "eslint-config-google": "0.14.0",
     "express": "4.17.2",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "7.0.4",
     "jsdom": "19.0.0",
     "jsdom-global": "3.0.2",
     "mini-css-extract-plugin": "^2.6.0",

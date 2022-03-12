@@ -1,20 +1,12 @@
 form
     .form-container-content
         .form-container__fields
-            | {{email}}
-            | {{login}}
-            | {{first_name}}
-            | {{second_name}}
-            | {{display_name}}
-            | {{phone}}
-            | {{password}}
-            | {{oldPassword}}
-            | {{newPassword}}
-            | {{confirm}}
-            | {{title}}
-            | {{user_id}}
-            .error-text
-                span="{{errorTextForm}}"
+            each input in [email, login, first_name, second_name, display_name, phone, password, oldPassword, newPassword, confirm, title, user_id]
+                if(input)
+                    div !{input}
+            if(errorTextForm)
+                .error-text
+                    span=errorTextForm
         .form-container__buttons
-            input(type="submit", value="{{submitName}}", class="input-field-submit")
-            | {{link}}
+            input(type="submit", value=submitName, class="input-field-submit")
+            div !{link}

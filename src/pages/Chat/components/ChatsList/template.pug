@@ -1,2 +1,4 @@
+- var list = chats ?? [];
 div.name
-  | {{chats}}
+    each chat in list
+      div !{chat}

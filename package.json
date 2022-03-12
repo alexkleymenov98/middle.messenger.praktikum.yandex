@@ -6,10 +6,9 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "dev": "webpack serve",
-    "start": "parcel src/index.pug --port=3000",
-    "serve": "parcel build --no-minify src/index.pug && node server.js",
-    "build": "parcel build  --no-minify src/index.pug",
+    "dev": "npx webpack serve --open",
+    "start": "npx webpack serve",
+    "build": "npx webpack",
     "eslint": "eslint . --ext .ts",
     "stylelint": "stylelint \"src/**/*.scss\"",
     "stylelintFixed": "stylelint \"src/**/*.scss\" --fix",

@@ -6,7 +6,7 @@ import {getTime} from '../../../../utils/getTime';
 export default connect(MessageList, ({activeChat, user}) => {
   if (!activeChat || !activeChat.messageList || !user) {
     return {
-      messages: null,
+      messages: [],
     };
   }
   return {

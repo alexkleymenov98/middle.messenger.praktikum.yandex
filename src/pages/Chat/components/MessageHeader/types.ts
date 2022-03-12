@@ -3,7 +3,7 @@ import Button from '../../../../components/Button';
 import {TBlock} from '../../../../shared/types';
 
 export type MessageHeaderProps = {
-  userList: ChatUser[] | null;
+  userList: ChatUser[];
   button: Button;
   modal: TBlock;
 }

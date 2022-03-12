@@ -3,12 +3,11 @@ import {RegistrationProps} from './types';
 import Form from '../../components/Form/form';
 import {BUTTON_NAME, InputLabel, InputName, RouterLinks, RouterLinksName} from '../../shared/const';
 import Input from '../../components/Input';
-// @ts-ignore
-import template from '../../layouts/Page/template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import Link from '../../components/Link';
 import AuthServices from '../../services/authServices';
 import {SignUpRequestData} from '../../api/auth/types';
+const template = require('../../layouts/Page/template.pug');
 
 class Registration extends Block<RegistrationProps> {
   constructor(props: Partial<RegistrationProps>) {

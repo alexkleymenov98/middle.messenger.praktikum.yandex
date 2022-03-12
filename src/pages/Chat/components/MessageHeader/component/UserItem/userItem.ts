@@ -1,10 +1,9 @@
 import Block from '../../../../../../modules/Block';
-// @ts-ignore
-import template from './template.pug';
 import {TRenderElement} from '../../../../../../modules/Block/types';
 import {UserItemProps} from './types';
 import {getActiveChat} from '../../../../../../modules/Store/actions';
 import ChatsServices from '../../../../../../services/chatsServices';
+const template = require('./template.pug');
 
 class UserItem extends Block<Partial<UserItemProps>> {
   constructor(props: Partial<UserItemProps>) {

@@ -1,8 +1,7 @@
 import Block from '../../../../modules/Block';
 import {MessageListProps} from './types';
 import {TRenderElement} from '../../../../modules/Block/types';
-// @ts-ignore
-import template from './template.pug';
+const template = require('./template.pug');
 
 class MessageList extends Block {
   constructor(props: MessageListProps) {

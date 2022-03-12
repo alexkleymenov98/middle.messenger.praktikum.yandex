@@ -1,9 +1,8 @@
 import Block from '../../modules/Block';
-// @ts-ignore
-import template from './template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import {ModalProps} from './types';
 import {hideModal} from '../../modules/Store/actions';
+const template = require('./template.pug');
 
 class Modal extends Block {
   constructor(props: ModalProps) {

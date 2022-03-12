@@ -3,12 +3,11 @@ import Block from '../../modules/Block';
 import {LoginProps} from './types';
 import {BUTTON_NAME, InputLabel, InputName, RouterLinks, RouterLinksName} from '../../shared/const';
 import Input from '../../components/Input';
-// @ts-ignore
-import template from '../../layouts/Page/template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import Link from '../../components/Link';
 import AuthServices from '../../services/authServices';
 import {LoginRequestData} from '../../api/auth/types';
+const template = require('../../layouts/Page/template.pug');
 
 
 class Login extends Block<LoginProps> {

@@ -1,11 +1,10 @@
 import Block from '../../../../modules/Block';
 import {ContentProps} from './types';
-// @ts-ignore
-import template from './template.pug';
 import {TRenderElement} from '../../../../modules/Block/types';
 import MessageForm from '../MessageForm';
 import MessageHeader from '../MessageHeader';
 import MessageList from '../MessageList';
+const template = require('./template.pug');
 
 class Content extends Block {
   constructor(props: Partial<ContentProps>) {

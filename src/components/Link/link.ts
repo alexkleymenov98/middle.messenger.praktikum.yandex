@@ -1,9 +1,8 @@
 import Block from '../../modules/Block';
 import {TRenderElement} from '../../modules/Block/types';
 import {LinkProps} from './types';
-// @ts-ignore
-import template from './template.pug';
 import Router from '../../modules/Router';
+const template = require('./template.pug');
 
 class Link extends Block<LinkProps> {
   constructor(props: LinkProps) {
@@ -21,8 +20,7 @@ class Link extends Block<LinkProps> {
   }
 
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
 

@@ -1,9 +1,8 @@
 import Block from '../../../../modules/Block';
 import {AvatarProps} from './types';
-// @ts-ignore
-import template from './template.pug';
 import {TRenderElement} from '../../../../modules/Block/types';
 import UserServices from '../../../../services/userServices';
+const template = require('./template.pug');
 
 class Avatar extends Block<AvatarProps> {
   constructor(props: AvatarProps) {
@@ -19,20 +18,6 @@ class Avatar extends Block<AvatarProps> {
       ...props,
     });
   }
-
-  // renderImage():void {
-  //   const imgComponent = this.getContent().querySelector('#profile-avatar');
-  //   if (imgComponent) {
-  //     imgComponent.setAttribute('src', this.props.avatarLink);
-  //   }
-  // }
-
-  // componentDidMount(): void {
-  //   this.renderImage();
-  // }
-  // componentDidUpdate(): void {
-  //   this.renderImage();
-  // }
 
   render(): TRenderElement {
     return this.compile(template, this.props);

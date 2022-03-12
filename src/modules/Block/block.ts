@@ -115,22 +115,6 @@ export default abstract class Block<T extends BlockProps = BlockProps> {
     return this._children;
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  _compileTemplate(template: string, props: any): string {
-    const regexp = /{{(.*?)}}/g;
-    const matches = template.match(regexp);
-
-    return matches
-      ? template.split(regexp).map(
-          (chunk: string) => {
-            if (props[chunk] != null) {
-              return Array.isArray(props[chunk]) ? props[chunk].join('') : props[chunk];
-            }
-            return props[chunk] === null ? '' : `${chunk}`;
-          },
-      ).join('') : template;
-  }
-
   compile(template: string, props: T): DocumentFragment {
     const propsAndStubs: T = {...props};
 
@@ -153,7 +137,8 @@ export default abstract class Block<T extends BlockProps = BlockProps> {
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
 
-    fragment.innerHTML = this._compileTemplate(template, propsAndStubs);
+    // @ts-ignore
+    fragment.innerHTML = template(propsAndStubs);
 
     Object.values(this.getChildren()).forEach((child) => {
       const childProps = child as Block;
@@ -192,14 +177,17 @@ export default abstract class Block<T extends BlockProps = BlockProps> {
   }
 
   private _render(): void {
-    const block = this.render(); // render теперь возвращает DocumentFragment
+    const block = this.render(); // render теперь возвращает DocumentFragment;
 
+    if (!this._element) {
+      this._element = this._createDocumentElement('div');
+    }
     this._removeEvents();
     // @ts-ignore
     this._element.innerHTML = ''; // удаляем предыдущее содержимое
 
     // @ts-ignore
-    this._element.appendChild(block);
+    this._element?.append(block);
 
     this._element?.setAttribute('data-id', this._id);
     this._addEvents();

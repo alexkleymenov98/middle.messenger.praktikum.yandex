@@ -1,6 +1,6 @@
 ### **Ссылки на PR**
 
-- «[Sprint 3](https://github.com/alexkleymenov98/middle.messenger.praktikum.yandex/pull/3)»,
+- «[Sprint 4](https://github.com/alexkleymenov98/middle.messenger.praktikum.yandex/pull/4)»,
 ## Приложение чат
 Приложения для обменя сообщениями между пользователями
 

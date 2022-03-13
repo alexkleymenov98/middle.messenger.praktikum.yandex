@@ -1,0 +1,5 @@
+deploy:
+    docker build -t chat .
+    heroku container:push web -a alexkleymenov98-chat
+    heroku container:release web -a alexkleymenov98-chat
+   	heroku open	-a alexkleymenov98-chat

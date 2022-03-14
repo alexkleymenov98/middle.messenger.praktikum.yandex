@@ -9,7 +9,6 @@ class Store extends EventBus<StoreEvents> {
     this.on(StoreEvents.Updated, () => {
     });
   }
-
   private state: TStore = {
     chats: [],
     errorTextForm: '',
@@ -31,4 +30,4 @@ class Store extends EventBus<StoreEvents> {
   }
 }
 
-export default new Store();
+export default Store;

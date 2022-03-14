@@ -1,11 +1,11 @@
 import MessageForm from '../MessageForm';
-import MessageList from '../MessageList';
 import MessageHeader from '../MessageHeader/messageHeader';
+import {TBlock} from '../../../../shared/types';
 
 export type ContentProps = {
   showMessage: string;
   showEmpty: string;
   messageHeader: MessageHeader;
-  messageList: MessageList;
+  messageList:TBlock;
   messageForm: MessageForm;
 }

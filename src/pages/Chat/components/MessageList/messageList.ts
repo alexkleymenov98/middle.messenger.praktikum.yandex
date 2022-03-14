@@ -1,9 +1,9 @@
 import Block from '../../../../modules/Block';
 import {MessageListProps} from './types';
 import {TRenderElement} from '../../../../modules/Block/types';
-import template from './template.pug';
+const template = require('./template.pug');
 
-class MessageList extends Block<MessageListProps> {
+class MessageList extends Block {
   constructor(props: MessageListProps) {
     super(props, 'div', 'message-container__list');
   }

@@ -1,10 +1,11 @@
 import Block from '../../modules/Block';
 import {InputProps} from './types';
-import template from './template.pug';
 import {TValidateResult} from '../../modules/Validate/types';
 import {InputName} from '../../shared/const';
 import validator from '../../modules/Validate';
 import {TRenderElement} from '../../modules/Block/types';
+
+const template = require('./template.pug');
 
 class Input extends Block<InputProps> {
   constructor(props: InputProps) {

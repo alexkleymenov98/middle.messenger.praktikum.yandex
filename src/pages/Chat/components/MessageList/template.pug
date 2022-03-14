@@ -1,2 +1,4 @@
+- var arrayMessage = messages ?? []
 .dialog__list
-    | {{messages}}
+  each message in arrayMessage
+      div !{message}

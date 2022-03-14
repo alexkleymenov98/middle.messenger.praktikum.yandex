@@ -1,5 +1,5 @@
 import AuthApi from '../api/auth/authApi';
-import {LoginRequest, SignUpRequest} from '../api/auth/types';
+import {LoginRequestData, SignUpRequestData} from '../api/auth/types';
 import SignUpApi from '../api/auth/signUpApi';
 import LoginApi from '../api/auth/loginApi';
 import Router from '../modules/Router';
@@ -18,7 +18,7 @@ class AuthServices {
     }
   }
 
-  public async singUp(payload: SignUpRequest): Promise<void> {
+  public async singUp(payload: SignUpRequestData): Promise<void> {
     try {
       await SignUpApi.request(payload);
       await this.getUser();
@@ -28,7 +28,7 @@ class AuthServices {
     }
   }
 
-  public async login(payload: LoginRequest): Promise<void> {
+  public async login(payload: LoginRequestData): Promise<void> {
     try {
       await LoginApi.request(payload);
       await this.getUser();

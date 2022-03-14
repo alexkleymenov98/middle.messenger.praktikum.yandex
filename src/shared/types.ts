@@ -1,4 +1,5 @@
-import Form from '../components/Form';
+import Block from '../modules/Block/block';
+import {BlockProps} from '../modules/Block/types';
 
 export type SuccessResponse = 'ОК';
 
@@ -11,7 +12,7 @@ export type Token = {
 
 export type PageProps = {
   title: string;
-  content: Form;
+  content: Block;
 }
 
 export type Indexed<T = unknown> = {
@@ -63,3 +64,7 @@ export type MessageResponse = {
     upload_date: string
   }
 };
+
+export type TBlock<T extends BlockProps = BlockProps> = Block<T>;
+
+export type TBlockConnect<T extends BlockProps = BlockProps> = new (...args:any[])=>Block<T>;

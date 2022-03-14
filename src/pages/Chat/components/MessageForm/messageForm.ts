@@ -1,10 +1,10 @@
 import Block from '../../../../modules/Block';
 import {MessageFormProps} from './types';
 import {TRenderElement} from '../../../../modules/Block/types';
-import template from './template.pug';
 import {InputName} from '../../../../shared/const';
 import validator from '../../../../modules/Validate';
 import ChatsServices from '../../../../services/chatsServices';
+const template = require('./template.pug');
 
 class MessageForm extends Block<MessageFormProps> {
   constructor(props: Partial<MessageFormProps>) {

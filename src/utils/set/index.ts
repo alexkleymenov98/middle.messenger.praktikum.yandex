@@ -2,9 +2,10 @@ import {Indexed} from '../../shared/types';
 import merge from '../merge';
 import isObject from '../isObject';
 
-function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
+function set(object: Indexed | unknown, path: unknown, value: unknown): Indexed | unknown {
   if (typeof path !== 'string') {
     new Error('path must be string');
+    return;
   }
 
   if (!isObject(object)) {

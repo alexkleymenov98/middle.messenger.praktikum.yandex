@@ -1,7 +1,7 @@
 import Block from '../../modules/Block';
 import {ButtonProps} from './types';
-import template from './template.pug';
 import {TRenderElement} from '../../modules/Block/types';
+const template = require('./template.pug');
 
 class Button extends Block<ButtonProps> {
   constructor(props: ButtonProps) {

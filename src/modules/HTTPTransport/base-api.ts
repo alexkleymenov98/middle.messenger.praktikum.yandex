@@ -1,5 +1,6 @@
 import HTTP from '../HTTPTransport';
 
+
 export class BaseApi {
   http: HTTP;
 
@@ -7,23 +8,27 @@ export class BaseApi {
     this.http = new HTTP(baseUrl, isFile);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  create(param: unknown): Promise<unknown> {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  create(p?:any):Promise<any> {
+    console.log(p);
     throw new Error('Not implemented');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  request(param?: unknown): void | Promise<unknown> {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  request(p?:any): Promise<any> {
+    console.log(p);
     throw new Error('Not implemented');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  update(param: unknown): void | Promise<unknown> {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  update(p?:any): Promise<any> {
+    console.log(p);
     throw new Error('Not implemented');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  delete(param?: unknown): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  delete(p?:any): Promise<any> {
+    console.log(p);
     throw new Error('Not implemented');
   }
 }

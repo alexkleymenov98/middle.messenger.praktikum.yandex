@@ -1,11 +1,7 @@
 import Route from './Route';
-import Block from '../Block';
 import {TRouteProps} from './types';
 import {RouterLinks} from '../../shared/const';
-
-export enum RouterEvents {
-  UPDATED = 'updated',
-}
+import {TBlockConnect} from '../../shared/types';
 
 class Router {
   isAuth: boolean;
@@ -58,7 +54,7 @@ class Router {
     route.render();
   }
 
-  use(pathname: string, block: Block, accessRight: TRouteProps['accessRight']): Router {
+  use(pathname: string, block: TBlockConnect, accessRight: TRouteProps['accessRight']): Router {
     const route = new Route(pathname, block, {rootQuery: this._rootQuery, accessRight});
     this.routes.push(route);
 

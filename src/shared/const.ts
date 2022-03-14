@@ -54,8 +54,4 @@ export enum BUTTON_NAME {
   SAVE = 'Сохранить',
 }
 
-export enum ROUTE_ACCESS {
-  PUBLIC = 'public',
-  PRIVATE = 'private',
-  ERROR = 'error',
-}
+export type ROUTE_ACCESS = 'public'|'private'|'error';

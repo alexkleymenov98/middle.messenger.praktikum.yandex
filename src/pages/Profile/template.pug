@@ -1,23 +1,23 @@
 .profile
-    | {{avatarBlock}}
-    h1.profile__title="{{first_name}} {{second_name}} #{{id}}"
+    div !{avatarBlock}
+    h1.profile__title #{first_name} #{second_name} ##{id}
     ul.profile-info
         li.profile-info__row
             span.label Почта
-            span.value {{email}}
+            span.value=email
         li.profile-info__row
             span.label Логин
-            span.value {{login}}
+            span.value=login
         li.profile-info__row
             span.label Имя
-            span.value {{first_name}}
+            span.value=first_name
         li.profile-info__row
             span.label Фамилия
-            span.value {{second_name}}
+            span.value=second_name
         li.profile-info__row
             span.label Имя в чате
-            span.value {{display_name}}
+            span.value=display_name
         li.profile-info__row
             span.label Телефон
-            span.value {{phone}}
-    | {{navigation}}
+            span.value=phone
+    div !{navigation}

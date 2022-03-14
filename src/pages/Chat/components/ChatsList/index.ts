@@ -6,7 +6,7 @@ import {getTime} from '../../../../utils/getTime';
 export default connect(
     ChatsList,
     ({chats}) => ({
-      chats: !chats.length ? null :
+      chats: !chats.length ? [] :
       chats
           .map((
               {

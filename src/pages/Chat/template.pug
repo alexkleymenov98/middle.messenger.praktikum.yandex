@@ -1,12 +1,7 @@
-.modal
-    | {{modal}}
+.modal !{modal}
 .message-list
     .sidebar
-        .sidebar__header
-            | {{linkProfile}}
-        .actions
-            | {{actions}}
-        .sidebar__content
-            | {{userList}}
-    .message-content-wrapper
-        | {{content}}
+        .sidebar__header !{linkProfile}
+        .actions !{actions}
+        .sidebar__content !{userList}
+    .message-content-wrapper !{content}

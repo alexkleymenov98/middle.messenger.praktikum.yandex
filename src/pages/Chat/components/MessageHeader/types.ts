@@ -1,9 +1,9 @@
 import {ChatUser} from '../../../../api/chat/types';
 import Button from '../../../../components/Button';
-import Modal from '../../../../components/modal';
+import {TBlock} from '../../../../shared/types';
 
 export type MessageHeaderProps = {
-  userList: ChatUser[] | null;
+  userList: ChatUser[];
   button: Button;
-  modal: Modal;
+  modal: TBlock;
 }

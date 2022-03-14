@@ -1,4 +1,4 @@
-import Store from './store';
+import Store from './index';
 import {TStore} from './types';
 import {ChatUser} from '../../api/chat/types';
 import {MessageResponse} from '../../shared/types';

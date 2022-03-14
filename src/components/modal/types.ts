@@ -6,4 +6,4 @@ export type ModalProps = {
   events?: ComponentEvents;
   typeModal: TStore['modal']['type'];
   content: Form;
-} & TStore['modal'];
+} & Partial<TStore['modal']>;

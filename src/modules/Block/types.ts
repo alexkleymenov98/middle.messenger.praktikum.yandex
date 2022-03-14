@@ -1,12 +1,12 @@
-import {ComponentEvents} from '../../shared/types';
+import {ComponentEvents, Indexed} from '../../shared/types';
 
 export type BlockEntryProps = {
-  children: Record<string, unknown | [unknown]>;
+  children: Record<string, any>;
   props: Record<string, unknown>;
 }
 
 export type BlockProps = {
   events?: ComponentEvents;
-} & { [key: string]: unknown };
+} & Indexed<any>;
 
 export type TRenderElement = HTMLElement | DocumentFragment;

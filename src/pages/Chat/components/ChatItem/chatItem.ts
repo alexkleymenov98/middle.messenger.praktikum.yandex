@@ -1,9 +1,9 @@
 import Block from '../../../../modules/Block';
 import {TRenderElement} from '../../../../modules/Block/types';
-import template from './template.pug';
 import {ChatItemProps} from './types';
 import Router from '../../../../modules/Router';
 import {RouterLinks} from '../../../../shared/const';
+const template = require('./template.pug');
 
 class ChatItem extends Block<ChatItemProps> {
   constructor(props: ChatItemProps) {

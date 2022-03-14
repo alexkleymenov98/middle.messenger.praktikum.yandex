@@ -1,9 +1,10 @@
 import Block from '../../modules/Block';
 import {FormProps, InputsForm} from './types';
-import template from './template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import {InputName} from '../../shared/const';
 import Input from '../Input';
+
+const template = require('./template.pug');
 
 class Form extends Block<FormProps> {
   constructor(props: FormProps) {

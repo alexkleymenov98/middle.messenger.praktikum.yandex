@@ -3,11 +3,11 @@ import {ChangePasswordProps} from './types';
 import Form from '../../components/Form';
 import {BUTTON_NAME, InputLabel, InputName, RouterLinks, RouterLinksName} from '../../shared/const';
 import Input from '../../components/Input';
-import template from '../../layouts/Page/template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import Link from '../../components/Link';
 import {ChangePasswordRequest} from '../../api/user/types';
 import UserServices from '../../services/userServices';
+const template = require('../../layouts/Page/template.pug');
 
 class ChangePassword extends Block<ChangePasswordProps> {
   constructor(props: Partial<ChangePasswordProps>) {
@@ -43,8 +43,7 @@ class ChangePassword extends Block<ChangePasswordProps> {
   }
 
   render(): TRenderElement {
-    const props = this.props;
-    return this.compile(template, props);
+    return this.compile(template, this.props);
   }
 }
 

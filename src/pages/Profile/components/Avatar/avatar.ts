@@ -1,35 +1,22 @@
 import Block from '../../../../modules/Block';
 import {AvatarProps} from './types';
-import template from './template.pug';
 import {TRenderElement} from '../../../../modules/Block/types';
 import UserServices from '../../../../services/userServices';
+const template = require('./template.pug');
 
 class Avatar extends Block<AvatarProps> {
-  constructor(props:AvatarProps) {
-    super({events: {
-      change: (event)=>{
-        event.preventDefault();
-        const formData = new FormData();
-        formData.append('avatar', event.target.files[0]);
-        UserServices.updateUserAvatar(formData);
+  constructor(props: AvatarProps) {
+    super({
+      events: {
+        change: (event: any) => {
+          event.preventDefault();
+          const formData = new FormData();
+          formData.append('avatar', event.target.files[0]);
+          UserServices.updateUserAvatar(formData);
+        },
       },
-    },
-    ...props,
+      ...props,
     });
-  }
-
-  renderImage():void {
-    const imgComponent = this.getContent().querySelector('#profile-avatar');
-    if (imgComponent) {
-      imgComponent.setAttribute('src', this.props.avatarLink);
-    }
-  }
-
-  componentDidMount(): void {
-    this.renderImage();
-  }
-  componentDidUpdate(): void {
-    this.renderImage();
   }
 
   render(): TRenderElement {

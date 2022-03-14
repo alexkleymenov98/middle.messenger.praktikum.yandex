@@ -1,17 +1,16 @@
 import Block from '../../modules/Block';
-import template from './template.pug';
 import {TRenderElement} from '../../modules/Block/types';
 import {ModalProps} from './types';
 import {hideModal} from '../../modules/Store/actions';
+const template = require('./template.pug');
 
-class Modal extends Block<ModalProps> {
+class Modal extends Block {
   constructor(props: ModalProps) {
     super({
       events: {
         click: (event) => this.onClickBackground(event),
       }, ...props,
-    }
-    , 'div', 'modal-wrapper');
+    }, 'div', 'modal-wrapper');
   }
 
   componentDidUpdate(): Promise<void> | undefined {
@@ -26,6 +25,7 @@ class Modal extends Block<ModalProps> {
 
 
   onClickBackground({target}: Event): void {
+    // @ts-ignore
     if (target?.className === 'modal-wrapper') {
       hideModal();
     }

@@ -1,6 +1,6 @@
 import {ComponentEvents} from '../../../../shared/types';
 
 export type AvatarProps = {
-  avatarLink:string;
+  avatarLink?:string;
   events?: ComponentEvents;
 }

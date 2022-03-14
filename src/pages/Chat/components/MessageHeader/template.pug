@@ -1,6 +1,6 @@
+- var arrayUsers = userList ?? [];
 .message-container__header-inner
     .user-item-wrapper
-        | {{userList}}
-    .settings
-        | {{button}}
-        | {{modal}}
+        each user in arrayUsers
+            div !{user}
+    .settings !{button} !{modal}
